@@ -1,38 +1,39 @@
 from django.db import models
 from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
 
 class Car(models.Model):
     FUEL_TYPES = [
-        ('petrol', 'Petrol'),
-        ('diesel', 'Diesel'),
-        ('electric', 'Electric'),
-        ('hybrid', 'Hybrid'),
+        ('petrol', _('Petrol')),
+        ('diesel', _('Diesel')),
+        ('electric', _('Electric')),
+        ('hybrid', _('Hybrid')),
     ]
 
     TRANSMISSION_TYPES = [
-        ('manual', 'Manual'),
-        ('automatic', 'Automatic'),
-        ('semi-automatic', 'Semi-Automatic'),
+        ('manual', _('Manual')),
+        ('automatic', _('Automatic')),
+        ('semi-automatic', _('Semi-Automatic')),
     ]
 
     DRIVE_TYPES = [
-        ('fwd', 'Front-Wheel Drive'),
-        ('rwd', 'Rear-Wheel Drive'),
-        ('awd', 'All-Wheel Drive'),
+        ('fwd', _('Front-Wheel Drive')),
+        ('rwd', _('Rear-Wheel Drive')),
+        ('awd', _('All-Wheel Drive')),
     ]
 
-    name = models.CharField(max_length=255)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    year = models.PositiveIntegerField()
-    engine_capacity = models.DecimalField(max_digits=4, decimal_places=1, help_text="Обʼєм двигуна в літрах")
-    fuel_type = models.CharField(max_length=10, choices=FUEL_TYPES)
-    transmission = models.CharField(max_length=15, choices=TRANSMISSION_TYPES)
-    mileage = models.PositiveIntegerField(help_text="Пробіг у кілометрах")
-    drive_type = models.CharField(max_length=10, choices=DRIVE_TYPES)
-    color = models.CharField(max_length=50)
-    code = models.CharField(max_length=50, unique=True)
-    photo = models.ImageField(upload_to='car_photos/', blank=True, null=True)
-    slug = models.SlugField(unique=True, blank=True)
+    name = models.CharField(max_length=255, verbose_name=_("Name"))
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name=_("Price"))
+    year = models.PositiveIntegerField(verbose_name=_("Year"))
+    engine_capacity = models.DecimalField(max_digits=4, decimal_places=1, verbose_name=_("Engine Capacity"), help_text=_("Engine capacity in liters"))
+    fuel_type = models.CharField(max_length=10, choices=FUEL_TYPES, verbose_name=_("Fuel Type"))
+    transmission = models.CharField(max_length=15, choices=TRANSMISSION_TYPES, verbose_name=_("Transmission"))
+    mileage = models.PositiveIntegerField(verbose_name=_("Mileage"), help_text=_("Mileage in kilometers"))
+    drive_type = models.CharField(max_length=10, choices=DRIVE_TYPES, verbose_name=_("Drive Type"))
+    color = models.CharField(max_length=50, verbose_name=_("Color"))
+    code = models.CharField(max_length=50, unique=True, verbose_name=_("Code"))
+    photo = models.ImageField(upload_to='car_photos/', blank=True, null=True, verbose_name=_("Photo"))
+    slug = models.SlugField(unique=True, blank=True, verbose_name=_("Slug"))
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -43,6 +44,7 @@ class Car(models.Model):
         return f'{self.name} ({self.year})'
 
     class Meta:
-        verbose_name = "Авто"
-        verbose_name_plural = "Автомобілі"
+        verbose_name = _("Car")
+        verbose_name_plural = _("Cars")
+
 

@@ -1,5 +1,5 @@
 body {
-  background-image: url("bg-image.jpg");
+  /*background-image: url("bg-image.jpg");*/
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center center;
@@ -17,7 +17,7 @@ body {
 
 .product_id {
   color: gray;
-  font-size: 15px;
+  font-size: 10px;
 }
 
 .badge.bg-warning.text-dark {
@@ -36,3 +36,6 @@ body {
   border-radius: 15px;
   font-size: 0.7rem;
 }
+
+
+

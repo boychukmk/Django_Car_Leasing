@@ -1,0 +1,212 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-22 15:21+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11 ? 0 : n % 10 "
+">= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : 2);\n"
+
+#: cars/models.py:7
+msgid "Petrol"
+msgstr "Бензин"
+
+#: cars/models.py:8
+msgid "Diesel"
+msgstr "Дизель"
+
+#: cars/models.py:9
+msgid "Electric"
+msgstr "Електричний"
+
+#: cars/models.py:10
+msgid "Hybrid"
+msgstr "Гібрид"
+
+#: cars/models.py:14
+msgid "Manual"
+msgstr "Механічна"
+
+#: cars/models.py:15
+msgid "Automatic"
+msgstr "Автоматична"
+
+#: cars/models.py:16
+msgid "Semi-Automatic"
+msgstr "Напівавтоматична"
+
+#: cars/models.py:20
+msgid "Front-Wheel Drive"
+msgstr "Передній привід"
+
+#: cars/models.py:21
+msgid "Rear-Wheel Drive"
+msgstr "Задній привід"
+
+#: cars/models.py:22
+msgid "All-Wheel Drive"
+msgstr "Повний привід"
+
+#: cars/models.py:25
+msgid "Name"
+msgstr "Назва"
+
+#: cars/models.py:26 cars/templates/auto.html:33
+msgid "Price"
+msgstr "Ціна"
+
+#: cars/models.py:27 cars/templates/auto.html:37 cars/templates/catalog.html:43
+msgid "Year"
+msgstr "Рік"
+
+#: cars/models.py:28 cars/templates/auto.html:41
+msgid "Engine Capacity"
+msgstr "Обʼєм двигуна"
+
+#: cars/models.py:28
+msgid "Engine capacity in liters"
+msgstr "Обʼєм двигуна в літрах"
+
+#: cars/models.py:29 cars/templates/auto.html:45
+msgid "Fuel Type"
+msgstr "Тип палива"
+
+#: cars/models.py:30 cars/templates/auto.html:49
+msgid "Transmission"
+msgstr "Трансмісія"
+
+#: cars/models.py:31 cars/templates/auto.html:53
+msgid "Mileage"
+msgstr "Пробіг"
+
+#: cars/models.py:31
+msgid "Mileage in kilometers"
+msgstr "Пробіг у кілометрах"
+
+#: cars/models.py:32 cars/templates/auto.html:57
+msgid "Drive Type"
+msgstr "Тип приводу"
+
+#: cars/models.py:33 cars/templates/auto.html:61
+msgid "Color"
+msgstr "Колір"
+
+#: cars/models.py:34
+msgid "Code"
+msgstr "Код"
+
+#: cars/models.py:35
+msgid "Photo"
+msgstr "Фото"
+
+#: cars/models.py:36
+msgid "Slug"
+msgstr "Слаг"
+
+#: cars/models.py:47
+msgid "Car"
+msgstr "Автомобіль"
+
+#: cars/models.py:48
+msgid "Cars"
+msgstr "Автомобілі"
+
+#: cars/templates/auto.html:29
+msgid "Buy"
+msgstr "Купити"
+
+#: cars/templates/catalog.html:9
+msgid "Filters"
+msgstr "Фільтри"
+
+#: cars/templates/catalog.html:13
+msgid "Sort by:"
+msgstr "Сортувати за:"
+
+#: cars/templates/catalog.html:17
+msgid "Default"
+msgstr "За замовчуванням"
+
+#: cars/templates/catalog.html:23
+msgid "Price: Low to High"
+msgstr "Від дешевих до дорогих"
+
+#: cars/templates/catalog.html:29
+msgid "Price: High to Low"
+msgstr "Від дорогих до дешевих"
+
+#: cars/templates/catalog.html:32
+msgid "Sort"
+msgstr "Сортувати"
+
+#: cars/templates/catalog.html:43
+msgid "Engine"
+msgstr "Двигун"
+
+#: cars/templates/catalog.html:49
+msgid "Discount"
+msgstr "Знижка"
+
+#: cars/templates/catalog.html:68
+msgid "Previous"
+msgstr "Попередня"
+
+#: cars/templates/catalog.html:72
+msgid "Next"
+msgstr "Наступна"
+
+#: djangoProject/settings.py:158
+msgid "English"
+msgstr "Англійська"
+
+#: djangoProject/settings.py:159
+msgid "Ukrainian"
+msgstr "Українська"
+
+#: templates/base.html:27
+msgid "Home"
+msgstr "Головна"
+
+#: templates/base.html:35
+msgid "Leasing"
+msgstr "Лізинг"
+
+#: templates/base.html:38
+msgid "For legal entities"
+msgstr "Для юридичних осіб"
+
+#: templates/base.html:39
+msgid "For individuals"
+msgstr "Для фізичних осіб"
+
+#: templates/base.html:43
+msgid "Car Sales"
+msgstr "Продаж авто"
+
+#: templates/base.html:46
+msgid "About Us"
+msgstr "Про нас"
+
+#: templates/base.html:49
+msgid "Cabinet"
+msgstr "Кабінет"
+
+#: templates/base.html:53 templates/base.html:54
+msgid "Search"
+msgstr "Пошук"
+
+#: templates/base.html:65
+msgid "Language"
+msgstr "Мова"

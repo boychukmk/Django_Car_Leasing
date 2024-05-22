@@ -1,5 +1,13 @@
+import os
+
+from django.core.checks import translation
+from django.http import HttpResponseRedirect, HttpResponseNotAllowed
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import redirect
+from dotenv import find_dotenv, load_dotenv
+
+from djangoProject import settings
+from .models import Service
 
 def index(request):
     context = {
@@ -8,6 +16,26 @@ def index(request):
     }
 
     return render(request, 'main/index.html', context)
+
+
+
+
+from django.utils.translation import activate
+# views.py
+
+
+
+
+
+
+def search(request):
+    query = request.GET.get('q', '')
+    services = Service.objects.filter(name__icontains=query) if query else Service.objects.all()
+    context = {
+        'services': services,
+        'query': query,
+    }
+    return render(request, 'base.html', context)
 
 
 def about(request):

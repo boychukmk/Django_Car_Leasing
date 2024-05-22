@@ -5,8 +5,13 @@ from .models import Car
 #     return render(request, 'cars/catalog.html')
 
 
-def auto(request):
-    return render(request, 'cars/auto.html')
+# def auto(request):
+#     return render(request, 'cars/auto.html')
+
+def auto(request, car_code):
+    car = Car.objects.get(code=car_code)
+    return render(request, 'auto.html', {'car': car})
+
 def catalog(request):
 
     order_by = request.GET.get('order_by', 'default')
