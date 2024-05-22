@@ -45,7 +45,7 @@
     {% for car in cars %}
     <div class="col-lg-4 col-md-6 p-4">
         <div class="card border-primary rounded custom-shadow">
-            <img src="{% static 'images/cars/'|add:car.slug|add:'.jpeg' %}" class="card-img-top" alt="{{ car.name }}">
+            <img src="{% static '/deps/images/cars/'|add:car.slug|add:'.jpeg' %}" class="card-img-top" alt="{{ car.name }}">
             <div class="card-body">
                 <a href="#">
                     <p class="card-title">{{ car.name }}</p>
