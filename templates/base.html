@@ -1,5 +1,8 @@
 {% load static i18n %}
 
+{% block css %}
+    <link rel="stylesheet" href="{% static "deps/css/my_base_css.css" %}">
+{% endblock %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,95 +19,48 @@
     <style>
         body {
             background-image: url("{% static 'deps/images/background.jpeg' %}");
-            background-size: cover;
-        }
-        .language-switcher {
-            display: inline-block;
-            position: relative;
-            margin-right: 10px;
-        }
-        .language-switcher img {
-            width: 30px;
-            height: auto;
-            cursor: pointer;
-        }
-        .language-switcher .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            z-index: 1000;
-            display: none;
-            float: left;
-            min-width: 10rem;
-            padding: .5rem 0;
-            margin: .125rem 0 0;
-            font-size: 1rem;
-            color: #212529;
-            text-align: left;
-            list-style: none;
-            background-color: #fff;
-            background-clip: padding-box;
-            border: 1px solid rgba(0,0,0,.15);
-            border-radius: .25rem;
-        }
-        .language-switcher .dropdown-menu.show {
-            display: block;
-        }
-        .language-switcher .dropdown-menu a {
-            display: block;
-            padding: .25rem 1.5rem;
-            clear: both;
-            font-weight: 400;
-            color: #212529;
-            text-align: inherit;
-            white-space: nowrap;
-            background-color: transparent;
-            border: 0;
-            cursor: pointer;
-            transition: background-color .15s ease-in-out,border-color .15s ease-in-out;
-        }
-        .language-switcher .dropdown-menu a:hover {
-            background-color: #f8f9fa;
-        }
+            background-size: cover;}
     </style>
+
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-            <div class="container">
-                <a class="navbar-brand" href="{% url 'main:index' %}">{% trans "Home" %}</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {% trans "Leasing" %}
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">{% trans "For legal entities" %}</a></li>
-                                <li><a class="dropdown-item" href="#">{% trans "For individuals" %}</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'catalog:index' %}">{% trans "Car Sales" %}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">{% trans "About Us" %}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">{% trans "Cabinet" %}</a>
-                        </li>
-                    </ul>
-                    <form class="d-flex" method="get" action="{% url 'catalog:index' %}">
-                        <input class="form-control me-2" type="search" name="q" placeholder="{% trans "Search" %}" aria-label="Search" value="{{ query }}">
-                        <button class="btn btn-outline-success text-white" type="submit">{% trans "Search" %}</button>
-                    </form>
-                </div>
+<header>
+    <nav class="navbar navbar-expand-lg custom-navbar fixed-top" data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'main:index' %}">{% trans "HOME" %}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 justify-content-between">
+                    <li class="nav-item dropdown position-relative">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {% trans "LEASING" %}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">{% trans "For legal entities" %}</a></li>
+                            <li><a class="dropdown-item" href="#">{% trans "For individuals" %}</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item position-relative">
+                        <a class="nav-link text-white" href="{% url 'catalog:index' %}">{% trans "CAR SALES" %}</a>
+                    </li>
+                    <li class="nav-item position-relative">
+                        <a class="nav-link text-white" href="{% url 'main:about' %}">{% trans "ABOUT US" %}</a>
+                    </li>
+                    <li class="nav-item position-relative">
+                        <a class="nav-link text-white" href="#">{% trans "CABINET" %}</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0" method="get" action="{% url 'catalog:index' %}">
+                    <input class="form-control mr-sm-2" type="search" name="q" placeholder="{% trans "Search" %}" aria-label="Search" value="{{ query }}">
+                    <button class="btn btn-outline-success my-2 my-sm-0 text-white" type="submit">{% trans "Search" %}</button>
+                </form>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
+
     <section>
         <div class="container">
             <!-- Content will be inserted here -->

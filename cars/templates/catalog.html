@@ -1,63 +1,73 @@
 {% extends "base.html" %}
 {% load static i18n %}
-
+{% block css %}
+    <link rel="stylesheet" href="{% static "deps/css/my_base_css.css" %}">
+{% endblock %}
 {% block content %}
-<div class="row mt-3">
+<div class="row mt-3 pt-5 mt-5 ">
     <!-- Форма фильтров -->
     <div class="dropdown mb-2">
         <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             {% trans "Filters" %}
         </button>
 
-        <form action="" method="get" class="dropdown-menu bg-dark" data-bs-theme="dark">
-            <p class="text-white mx-3 mt-3">{% trans "Sort by:" %}</p>
-            <div class="form-check text-white mx-3">
-                <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault1" value="default" checked>
-                <label class="form-check-label" for="flexRadioDefault1">
-                    {% trans "Default" %}
-                </label>
-            </div>
-            <div class="form-check text-white mx-3">
-                <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault2" value="price">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    {% trans "Price: Low to High" %}
-                </label>
-            </div>
-            <div class="form-check text-white mx-3">
-                <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault3" value="-price">
-                <label class="form-check-label" for="flexRadioDefault3">
-                    {% trans "Price: High to Low" %}
-                </label>
-            </div>
-            <button type="submit" class="btn btn-primary mx-3 mt-3">{% trans "Sort" %}</button>
-        </form>
+      <form action="" method="get" class="dropdown-menu bg-dark" data-bs-theme="dark">
+    <p class="text-white mx-3 mt-3">{% trans "Sort by:" %}</p>
+    <div class="form-check text-white mx-3">
+        <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault1" value="default" {% if order_by == 'default' %}checked{% endif %}>
+        <label class="form-check-label" for="flexRadioDefault1">
+            {% trans "Default" %}
+        </label>
+    </div>
+    <div class="form-check text-white mx-3">
+        <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault2" value="price" {% if order_by == 'price' %}checked{% endif %}>
+        <label class="form-check-label" for="flexRadioDefault2">
+            {% trans "Price: Low to High" %}
+        </label>
+    </div>
+    <div class="form-check text-white mx-3">
+        <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault3" value="-price" {% if order_by == '-price' %}checked{% endif %}>
+        <label class="form-check-label" for="flexRadioDefault3">
+            {% trans "Price: High to Low" %}
+        </label>
+    </div>
+    <div class="form-check text-white mx-3">
+        <input class="form-check-input" type="checkbox" name="discount" id="discountCheckbox" value="true" {% if discount_filter %}checked{% endif %}>
+        <label class="form-check-label" for="discountCheckbox">
+            {% trans "Discounted" %}
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary mx-3 mt-3">{% trans "Sort" %}</button>
+</form>
+
     </div>
 
     <!-- Автомобили -->
     {% for car in cars %}
-    <div class="col-lg-4 col-md-6 p-4">
-        <div class="card border-primary rounded custom-shadow">
-            <img src="{% static '/deps/images/cars/'|add:car.slug|add:'.jpeg' %}" class="card-img-top" alt="{{ car.name }}">
-            <div class="card-body">
-                <p class="card-title">{{ car.name }}</p>
-                <p class="card-text text-truncate">{% trans "Year" %}: {{ car.year }}. {% trans "Engine" %}: {{ car.engine_capacity }} л, {{ car.get_fuel_type_display }}.</p>
-                <p class="product_id">id: {{ car.code }}</p>
-                <div class="d-flex justify-content-between">
-                    {% if car.on_sale %}
-                    <p><s>{{ car.original_price }} $</s></p>
-                    <p><strong>{{ car.price }} $</strong></p>
-                    <span class="badge bg-warning text-dark">{% trans "Discount" %} {{ car.discount_percentage }} %</span>
-                    {% else %}
-                    <p><strong>{{ car.price }} $</strong></p>
-                    {% endif %}
-                    <a href="{% url 'cars:auto' car.code %}" class="btn" onmouseover="this.classList.add('btn-light')" onmouseout="this.classList.remove('btn-light')">
-                        <img class="mx-1" src="{% static 'deps/icons/cart-plus.svg' %}" alt="Catalog Icon" width="32" height="32">
-                    </a>
-                </div>
+<div class="col-lg-4 col-md-6 p-4">
+    <div class="card border-primary rounded custom-shadow">
+        <img src="{% static '/deps/images/cars/'|add:car.slug|add:'.jpeg' %}" class="card-img-top" alt="{{ car.name }}">
+        <div class="card-body">
+            <p class="card-title fw-bold" style="font-size: 30px;">{{ car.name }}</p>
+            <p class="card-text text-truncate">{% trans "Year" %}: {{ car.year }}. {% trans "Engine" %}: {{ car.engine_capacity }} л, {{ car.get_fuel_type_display }}.</p>
+            <p class="product_id">id: {{ car.code }}</p>
+            <div class="d-flex justify-content-between">
+                {% if car.discount %}
+                <p><s>{{ car.price }} $</s></p>
+                <p><strong>{{ car.discounted_price }} $</strong></p>
+                <span class="badge bg-warning text-dark" style="background-color: red!important;">{% trans "Discount" %} {{ car.difference }} $</span>
+                {% else %}
+                <p><strong>{{ car.price }} $</strong></p>
+                {% endif %}
+                <a href="{% url 'cars:auto' car.code %}" class="btn" onmouseover="this.classList.add('btn-light')" onmouseout="this.classList.remove('btn-light')">
+                    <img class="mx-1" src="{% static 'deps/icons/cart-plus.svg' %}" alt="Catalog Icon" width="32" height="32">
+                </a>
             </div>
         </div>
     </div>
-    {% endfor %}
+</div>
+{% endfor %}
+
 </div>
 
 <!-- Пагинация -->
@@ -79,7 +89,7 @@
 {% block footer %}
 <footer class="py-4 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Home Python Hub Studio 2023</p>
+        <p class="m-0 text-center text-white">Copyright &copy; Maksym Boichuk 2024</p>
     </div>
 </footer>
 {% endblock %}

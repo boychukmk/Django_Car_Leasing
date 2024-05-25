@@ -1,0 +1,14 @@
+
+.custom-navbar {
+    background-color: #0b5ed7; /* Синій колір фону */
+    height: 70px; /* Висота навігаційної панелі */
+    box-shadow: 0 4px 2px -2px gray; /* Тінь для панелі */
+}
+
+.color-blue{
+    background-color: #0b5ed7;
+}
+
+
+
+

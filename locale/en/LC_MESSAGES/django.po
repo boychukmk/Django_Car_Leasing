@@ -12,253 +12,232 @@ msgstr ""
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: uk\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11 ? 0 : n % 10 "
-">= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : 2);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: cars/models.py:7
 msgid "Petrol"
-msgstr "Бензин"
+msgstr ""
 
 #: cars/models.py:8
 msgid "Diesel"
-msgstr "Дизель"
+msgstr ""
 
 #: cars/models.py:9
 msgid "Electric"
-msgstr "Електричний"
+msgstr ""
 
 #: cars/models.py:10
 msgid "Hybrid"
-msgstr "Гібрид"
+msgstr ""
 
 #: cars/models.py:14
 msgid "Manual"
-msgstr "Механічна"
+msgstr ""
 
 #: cars/models.py:15
 msgid "Automatic"
-msgstr "Автоматична"
+msgstr ""
 
 #: cars/models.py:16
 msgid "Semi-Automatic"
-msgstr "Напівавтоматична"
+msgstr ""
 
 #: cars/models.py:20
 msgid "Front-Wheel Drive"
-msgstr "Передній привід"
+msgstr ""
 
 #: cars/models.py:21
 msgid "Rear-Wheel Drive"
-msgstr "Задній привід"
+msgstr ""
 
 #: cars/models.py:22
 msgid "All-Wheel Drive"
-msgstr "Повний привід"
+msgstr ""
 
 #: cars/models.py:25
 msgid "Black"
-msgstr "Чорний"
+msgstr ""
 
 #: cars/models.py:26
 msgid "White"
-msgstr "Білий"
+msgstr ""
 
 #: cars/models.py:27
 msgid "Red"
-msgstr "Червоний"
+msgstr ""
 
 #: cars/models.py:28
 msgid "Blue"
-msgstr "Синій"
+msgstr ""
 
 #: cars/models.py:29
 msgid "Grey"
-msgstr "Сірий"
+msgstr ""
 
 #: cars/models.py:32
 msgid "Name"
-msgstr "Назва"
+msgstr ""
 
 #: cars/models.py:33 cars/templates/auto.html:34
 msgid "Price"
-msgstr "Ціна"
+msgstr ""
 
 #: cars/models.py:34 cars/templates/auto.html:38 cars/templates/catalog.html:52
 msgid "Year"
-msgstr "Рік"
+msgstr ""
 
 #: cars/models.py:35 cars/templates/auto.html:42
 msgid "Engine Capacity"
-msgstr "Обʼєм двигуна"
+msgstr ""
 
 #: cars/models.py:35
 msgid "Engine capacity in liters"
-msgstr "Обʼєм двигуна в літрах"
+msgstr ""
 
 #: cars/models.py:36 cars/templates/auto.html:46
 msgid "Fuel Type"
-msgstr "Тип палива"
+msgstr ""
 
 #: cars/models.py:37 cars/templates/auto.html:50
 msgid "Transmission"
-msgstr "Трансмісія"
+msgstr ""
 
 #: cars/models.py:38 cars/templates/auto.html:54
 msgid "Mileage"
-msgstr "Пробіг"
+msgstr ""
 
 #: cars/models.py:38
 msgid "Mileage in kilometers"
-msgstr "Пробіг у кілометрах"
+msgstr ""
 
 #: cars/models.py:39 cars/templates/auto.html:58
 msgid "Drive Type"
-msgstr "Тип приводу"
+msgstr ""
 
 #: cars/models.py:40 cars/templates/auto.html:62
 msgid "Color"
-msgstr "Колір"
+msgstr ""
 
 #: cars/models.py:41
 msgid "Code"
-msgstr "Код"
+msgstr ""
 
 #: cars/models.py:42
 msgid "Photo"
-msgstr "Фото"
+msgstr ""
 
 #: cars/models.py:43
 msgid "Slug"
-msgstr "Слаг"
+msgstr ""
 
 #: cars/models.py:44 cars/templates/catalog.html:58
 msgid "Discount"
-msgstr "Знижка"
+msgstr ""
 
 #: cars/models.py:44
 msgid "Discount in percentage"
-msgstr "Знижка у відсотках"
+msgstr ""
 
 #: cars/models.py:66
 msgid "Car"
-msgstr "Автомобіль"
+msgstr ""
 
 #: cars/models.py:67
 msgid "Cars"
-msgstr "Автомобілі"
+msgstr ""
 
 #: cars/templates/auto.html:30
 msgid "Buy"
-msgstr "Купити"
+msgstr ""
 
 #: cars/templates/auto.html:68
 msgid "Book this car"
-msgstr "Забронювати це авто"
+msgstr ""
 
 #: cars/templates/auto.html:69
 msgid "BUY NOW"
-msgstr "КУПИТИ ЗАРАЗ"
+msgstr ""
 
 #: cars/templates/catalog.html:11
 msgid "Filters"
-msgstr "Фільтри"
+msgstr ""
 
 #: cars/templates/catalog.html:15
 msgid "Sort by:"
-msgstr "Сортувати за:"
+msgstr ""
 
 #: cars/templates/catalog.html:19
 msgid "Default"
-msgstr "За замовчуванням"
+msgstr ""
 
 #: cars/templates/catalog.html:25
 msgid "Price: Low to High"
-msgstr "Від дешевих до дорогих"
+msgstr ""
 
 #: cars/templates/catalog.html:31
 msgid "Price: High to Low"
-msgstr "Від дорогих до дешевих"
+msgstr ""
 
 #: cars/templates/catalog.html:37
-#, fuzzy
-#| msgid "Discount"
 msgid "Discounted"
-msgstr "Знижка"
+msgstr ""
 
 #: cars/templates/catalog.html:40
 msgid "Sort"
-msgstr "Сортувати"
+msgstr ""
 
 #: cars/templates/catalog.html:52
 msgid "Engine"
-msgstr "Двигун"
+msgstr ""
 
 #: cars/templates/catalog.html:78
 msgid "Previous"
-msgstr "Попередня"
+msgstr ""
 
 #: cars/templates/catalog.html:82
 msgid "Next"
-msgstr "Наступна"
+msgstr ""
 
 #: djangoProject/settings.py:133 djangoProject/settings.py:167
 msgid "English"
-msgstr "Англійська"
+msgstr ""
 
 #: djangoProject/settings.py:134 djangoProject/settings.py:168
 msgid "Ukrainian"
-msgstr "Українська"
+msgstr ""
 
 #: templates/base.html:30
 msgid "HOME"
-msgstr "ГОЛОВНА"
+msgstr ""
 
 #: templates/base.html:38
 msgid "LEASING"
-msgstr "ЛІЗИНГ"
+msgstr ""
 
 #: templates/base.html:41
 msgid "For legal entities"
-msgstr "Для юридичних осіб"
+msgstr ""
 
 #: templates/base.html:42
 msgid "For individuals"
-msgstr "Для фізичних осіб"
+msgstr ""
 
 #: templates/base.html:46
 msgid "CAR SALES"
-msgstr "ПРОДАЖ АВТО"
+msgstr ""
 
 #: templates/base.html:49
 msgid "ABOUT US"
-msgstr "ПРО НАС"
+msgstr ""
 
 #: templates/base.html:52
 msgid "CABINET"
-msgstr "КАБІНЕТ"
+msgstr ""
 
 #: templates/base.html:56 templates/base.html:57
 msgid "Search"
-msgstr "Пошук"
-
-msgid "Home"
-msgstr "Головна"
-
-msgid "Leasing"
-msgstr "Лізинг"
-
-msgid "Car Sales"
-msgstr "Продаж авто"
-
-msgid "About Us"
-msgstr "Про нас"
-
-msgid "Cabinet"
-msgstr "Кабінет"
-
-msgid "Language"
-msgstr "Мова"
+msgstr ""

@@ -3,26 +3,27 @@
 
 {% block css %}
     <link rel="stylesheet" href="{% static "deps/css/my_css.css" %}">
+    <link rel="stylesheet" href="{% static "deps/css/my_base_css.css" %}">
 {% endblock %}
 
 {% block content %}
-    <style>
-        body {
-            background-image: none;
-        }
-        .table-striped tbody tr:nth-of-type(odd) {
-            background-color: #0b5ed7;
-            color: white;
-        }
-    </style>
-<div class="container mt-3">
+<style>
+    body {
+        background-image: none;
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #0b5ed7;
+        color: white;
+    }
+</style>
+<div class="container mt-4 pt-5">
     <h1 class="text-center mb-4 pb-3" style="font-size: 60px; font-style: italic; border-bottom: solid 6px #0b5ed7;">{{ car.name }}</h1>
     <div class="row">
         <div class="col-md-6">
             <img src="{% static '/deps/images/cars/'|add:car.slug|add:'.jpeg' %}" class="img-fluid" alt="{{ car.name }}">
         </div>
         <div class="col-md-6">
-            <table class="table table-striped">
+            <table class="table table-striped p-4">
                 <tbody>
                     <tr>
                         <th colspan="2" style="font-size: 25px; background-color: #0b5ed7; color: white; text-align: center;">
@@ -63,10 +64,16 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="text-center d-flex m-4 col-lg">
+                <a href="#" class="color-blue btn-lg px-5 m-4 py-4 btn-block d-block text-white">{% trans "Book this car" %}</a>
+                <a href="#" class="color-blue btn-lg px-5 m-4 py-4 btn-block d-block text-white">{% trans "BUY NOW" %}</a>
+            </div>
+
         </div>
     </div>
 </div>
 {% endblock %}
+
 
 
 
