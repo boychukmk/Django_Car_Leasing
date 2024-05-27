@@ -37,10 +37,10 @@
                         <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {% trans "LEASING" %}
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">{% trans "For legal entities" %}</a></li>
-                            <li><a class="dropdown-item" href="#">{% trans "For individuals" %}</a></li>
-                        </ul>
+                       <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'leasing:legalentities' %}">{% trans "For legal entities" %}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'leasing:individuals' %}">{% trans "For individuals" %}</a></li>
+                       </ul>
                     </li>
                     <li class="nav-item position-relative">
                         <a class="nav-link text-white" href="{% url 'catalog:index' %}">{% trans "CAR SALES" %}</a>
@@ -48,9 +48,14 @@
                     <li class="nav-item position-relative">
                         <a class="nav-link text-white" href="{% url 'main:about' %}">{% trans "ABOUT US" %}</a>
                     </li>
-                    <li class="nav-item position-relative">
+                  <li class="nav-item position-relative">
                         <a class="nav-link text-white" href="#">{% trans "CABINET" %}</a>
                     </li>
+                    {% if user.is_superuser %}
+                    <li class="nav-item position-relative">
+                        <a class="nav-link btn btn-primary text-white" href="{% url 'admin:index' %}">{% trans "Admin Panel" %}</a>
+                    </li>
+                    {% endif %}
                 </ul>
                 <form class="form-inline my-2 my-lg-0" method="get" action="{% url 'catalog:index' %}">
                     <input class="form-control mr-sm-2" type="search" name="q" placeholder="{% trans "Search" %}" aria-label="Search" value="{{ query }}">

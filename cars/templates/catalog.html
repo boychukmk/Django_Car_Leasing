@@ -2,6 +2,7 @@
 {% load static i18n %}
 {% block css %}
     <link rel="stylesheet" href="{% static "deps/css/my_base_css.css" %}">
+    <link rel="stylesheet" href="{% static "deps/css/my_css.css" %}">
 {% endblock %}
 {% block content %}
 <div class="row mt-3 pt-5 mt-5 ">
@@ -42,10 +43,12 @@
 
     </div>
 
-    <!-- Автомобили -->
-    {% for car in cars %}
+   {% for car in cars %}
 <div class="col-lg-4 col-md-6 p-4">
-    <div class="card border-primary rounded custom-shadow">
+    <div class="card border-primary rounded custom-shadow position-relative">
+        {% if car.discount %}
+        <span class="badge bg-warning text-dark position-absolute px-3 py-3 top-0 end-0 m-2" style="background-color: red!important; font-size: 1.1rem;">{% trans "Discount" %} {{ car.difference }} $</span>
+        {% endif %}
         <img src="{% static '/deps/images/cars/'|add:car.slug|add:'.jpeg' %}" class="card-img-top" alt="{{ car.name }}">
         <div class="card-body">
             <p class="card-title fw-bold" style="font-size: 30px;">{{ car.name }}</p>
@@ -55,7 +58,6 @@
                 {% if car.discount %}
                 <p><s>{{ car.price }} $</s></p>
                 <p><strong>{{ car.discounted_price }} $</strong></p>
-                <span class="badge bg-warning text-dark" style="background-color: red!important;">{% trans "Discount" %} {{ car.difference }} $</span>
                 {% else %}
                 <p><strong>{{ car.price }} $</strong></p>
                 {% endif %}
@@ -67,6 +69,7 @@
     </div>
 </div>
 {% endfor %}
+
 
 </div>
 
@@ -93,5 +96,4 @@
     </div>
 </footer>
 {% endblock %}
-
 

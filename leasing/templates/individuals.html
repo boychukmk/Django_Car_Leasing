@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block css %}
+    <link rel="stylesheet" href="{% static "deps/css/my_base_css.css" %}">
+    <link rel="stylesheet" href="{% static "deps/css/my_css.css" %}">
+{% endblock %}
+{% block content %}
+    <style>
+    body {
+        background-image: none;
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #0b5ed7;
+        color: white;
+    }
+</style>
+<div class="container mt-5 pt-5">
+    <h1 style="font-size: 50px;" class="text-xxl-center m-3 pb-2 border-blue-bottom">{% trans "THE CAR IN PRIVATE LEASING IS YOUR NEW LEVEL" %}</h1>
+
+    <div class="text-center">
+        <img alt="BoichukAuto" src="{% static 'deps/images/indiv2.jpeg' %}">
+    </div>
+
+    <h2 class="fw-bold text-xl-center blue">{% trans "BOICHUKAUTO - PRIVATE CAR LEASING" %}</h2>
+
+    <p>{% trans "Dreams should come true to the MAXIMUM! Live now, invest in yourself, take a car on private lease! This is the message of BoichukAuto, which started to provide cars for operational leasing to private individuals. For 25 years in Ukraine, BoichukAuto specialists have been leasing fleets of hundreds of cars with full service for large companies. Now it's time to provide access to this service for you!" %}</p>
+
+    <h3 class="fw-bold text-xl-start border-blue-top">{% trans "How does BoichukAuto private leasing work?" %}</h3>
+
+    <p>{% trans "You invest in yourself, your family, or your business, and we buy you a new car and take care of it. You use it for a monthly fee, which includes a full service package." %}</p>
+
+    <h3 class="fw-bold">{% trans "What is included in the service package?" %}</h3>
+
+    <ul class="custom-list">
+        <li>{% trans "We select a new car for you that best suits your needs and buy it for you" %}</li>
+        <li>{% trans "We pay the pension fund tax, luxury tax, register the car, insure the car and hand it over to you" %}</li>
+        <li>{% trans "We organize car maintenance only at official service stations, our drivers take care to deliver it to the service and return it to you" %}</li>
+        <li>{% trans "Twice a year we organize tire replacement and storage of seasonal tires, deliver your car to the tire service and return it to you" %}</li>
+        <li>{% trans "Provide a replacement car if yours is being repaired for more than a day" %}</li>
+        <li>{% trans "Prepare documents for driving a car abroad" %}</li>
+    </ul>
+
+    <h3 class="fw-bold">{% trans "How is the payment formed?" %}</h3>
+
+    <p>{% trans "When you sign a contract, you pay for 4 months of car use at once. For the first month and the final three (as a guarantee payment). Then you pay monthly in equal installments. The amount of the monthly fee for using the car is fixed for the entire term of the agreement. For a monthly fee, you get a new car with a full all-inclusive service package." %}</p>
+
+    <h3 class="fw-bold">{% trans "How to choose the car of your dreams?" %}</h3>
+
+    <p>{% trans "Choose your dream car of any brand in your favorite configuration, and we will order it for you from an authorized dealer. If you have already chosen a car in the showroom, we can buy it for you in official dealer networks throughout Ukraine and deliver it to you." %}</p>
+
+    <h3 class="fw-bold">{% trans "How to get a car today?" %}</h3>
+
+    <p>{% trans "Choose a new car from our warehouse and get it on the same day you sign the agreement. New cars are already in the fleet for private leasing: Skoda Fabia, Skoda Scala, Toyota Corolla, Toyota Camry, Renault Duster, Suzuki Vitara, Skoda Karoq, Skoda Kodiaq, Hyundai Tucson, Toyota RAV4, Toyota Highlander." %}</p>
+
+    <h3 class="fw-bold">{% trans "How to get a car on private lease?" %}</h3>
+
+    <ul class="custom-list">
+        <li>{% trans "Choose a car" %}</li>
+        <li>{% trans "Contact us at +38 067 462 05 20" %}</li>
+        <li>{% trans "Send us the documents" %}</li>
+        <li>{% trans "Sign the agreement" %}</li>
+        <li>{% trans "Get a car" %}</li>
+    </ul>
+
+    <h3 class="fw-bold">{% trans "What documents are needed?" %}</h3>
+
+    <ul class="custom-list">
+        <li>{% trans "Passport" %}</li>
+        <li>{% trans "Driver's license" %}</li>
+        <li>{% trans "Identification code" %}</li>
+        <li>{% trans "Bank statement" %}</li>
+    </ul>
+
+    <h3 class="fw-bold">{% trans "What are your benefits?" %}</h3>
+
+    <ul class="custom-list">
+        <li>{% trans "You get the car you dreamed of, and no less" %}</li>
+        <li>{% trans "Save your savings for important things" %}</li>
+        <li>{% trans "Save time for global affairs" %}</li>
+        <li>{% trans "Keep calm, because you are always by car under any circumstances" %}</li>
+        <li>{% trans "Live now - drive a car today" %}</li>
+    </ul>
+
+    <h3 class="fw-bold">{% trans "Why choose BoichukAuto if you lease a car?" %}</h3>
+
+    <p>{% trans "BoichukAuto is a local division of the international mobility services provider Avis, which has been leasing large fleets to large companies and providing turnkey services for 25 years in Ukraine, and now provides cars for lease and rental to individuals." %}</p>
+
+    <ul class="custom-list">
+        <li>{% trans "77 years of the BoichukAuto brand in the world" %}</li>
+        <li>{% trans "25 years of BoichukAuto operation in Ukraine" %}</li>
+        <li>{% trans "3,500 cars in the BoichukAuto leasing fleet" %}</li>
+        <li>{% trans "500 cars in the BoichukAuto rental fleet" %}</li>
+        <li>{% trans "450 service partners service the cars in the BoichukAuto fleet" %}</li>
+    </ul>
+
+    <h3 class="fw-bold">{% trans "What are our contacts?" %}</h3>
+
+    <p>{% trans "Maksym Boichuk, Private Leasing Manager: +38 067 000 00 00" %}</p>
+
+    <p>{% trans "BoichukAuto, a car leasing service provider: 0 800 000 000 - free of charge from mobile numbers in Ukraine, +38 044 000 00 00 - for calls from abroad" %}</p>
+
+    <p>{% trans "Try it!" %}</p>
+</div>
+{% endblock %}

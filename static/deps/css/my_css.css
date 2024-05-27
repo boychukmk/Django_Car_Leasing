@@ -20,11 +20,7 @@ body {
   font-size: 10px;
 }
 
-.badge.bg-warning.text-dark. {
-  position: absolute;
-  top: 10px;
-  right: 5px;
-  z-index: 1;
+.badge.bg-warning.text-dark {
   padding: 5px 10px;
   border-radius: 3px;
   font-size: 1rem;
@@ -37,5 +33,45 @@ body {
   font-size: 0.7rem;
 }
 
+/*.content img {*/
+/*  width: 100%;*/
+/*}*/
+/*.content ul {*/
+/*  list-style-type: disc;*/
+/*  margin-left: 20px;*/
+/*}*/
+.container img  {
+    width: 100%;
+}
 
+.custom-list {
+    list-style: none;
+    padding: 0  ;
+    background-color: rgba(239, 239, 240);, 1;
+    border-left: #0b5ed7 solid;
+}
+
+.custom-list li {
+    color: black; /* Ensures text color is black */
+    list-style: none;
+
+}
+
+.custom-list li::before {
+    content: '•';
+    color: #0b5ed7; /* Sets bullet color to blue */
+    font-size: 30px;
+    margin: auto 13px;
+
+    /*position: absolute;*/
+}
+.border-blue-top{
+    border-top: solid 6px #0b5ed7;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.border-blue-bottom{
+    border-bottom: solid 6px #0b5ed7;
+    margin-bottom: 10px;
+}
 

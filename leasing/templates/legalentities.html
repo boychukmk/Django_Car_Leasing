@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block css %}
+    <link rel="stylesheet" href="{% static "deps/css/my_base_css.css" %}">
+    <link rel="stylesheet" href="{% static "deps/css/my_css.css" %}">
+{% endblock %}
+{% block content %}
+    <style>
+    body {
+        background-image: none;
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #0b5ed7;
+        color: white;
+    }
+</style>
+<div class="container mt-5 pt-5">
+    <h1 style="font-size: 60px; font-style: italic; border-bottom: solid 6px #0b5ed7;">{% trans "Leasing for Legal Entities" %}</h1>
+    <p>{% trans "Information about leasing for legal entities and leasing rules." %}</p>
+    <p style="border-bottom: solid 6px #0b5ed7; " class="py-3">{% trans "Detailed information about the leasing process, conditions, and benefits for legal entities." %}</p>
+
+    <p>{% trans "Further details and rules about leasing for legal entities." %}</p>
+    <a href="{% url 'catalog:index' %}" class="btn btn-primary mt-3">{% trans "Go to Catalog" %}</a>
+</div>
+{% endblock %}

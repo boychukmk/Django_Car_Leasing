@@ -21,6 +21,7 @@ class Car(models.Model):
         ('rwd', _('Rear-Wheel Drive')),
         ('awd', _('All-Wheel Drive')),
     ]
+
     COLORS = [
         ('black', _('Black')),
         ('white', _('White')),
@@ -37,7 +38,7 @@ class Car(models.Model):
     transmission = models.CharField(max_length=15, choices=TRANSMISSION_TYPES, verbose_name=_("Transmission"))
     mileage = models.PositiveIntegerField(verbose_name=_("Mileage"), help_text=_("Mileage in kilometers"))
     drive_type = models.CharField(max_length=10, choices=DRIVE_TYPES, verbose_name=_("Drive Type"))
-    color = models.CharField(max_length=50,choices=COLORS, verbose_name=_("Color"))
+    color = models.CharField(max_length=50, choices=COLORS, verbose_name=_("Color"))
     code = models.CharField(max_length=50, unique=True, verbose_name=_("Code"))
     photo = models.ImageField(upload_to='static/deps/images/cars/', blank=True, null=True, verbose_name=_("Photo"))
     slug = models.SlugField(unique=True, blank=True, verbose_name=_("Slug"))
@@ -58,9 +59,19 @@ class Car(models.Model):
 
     @property
     def difference(self):
-       return f"{self.price - (self.price * (1 - self.discount / 100)):.2f}"
+        return f"{self.price - (self.price * (1 - self.discount / 100)):.2f}"
+
     def __str__(self):
         return f'{self.name} ({self.year})'
+
+    def is_available(self, start_date, end_date):
+        from leasing.models import LeasingContract  # Avoid circular import
+        conflicting_contracts = LeasingContract.objects.filter(
+            car=self,
+            start_date__lt=end_date,
+            end_date__gt=start_date
+        )
+        return not conflicting_contracts.exists()
 
     class Meta:
         verbose_name = _("Car")

@@ -17,7 +17,7 @@
     }
 </style>
 <div class="container mt-4 pt-5">
-    <h1 class="text-center mb-4 pb-3" style="font-size: 60px; font-style: italic; border-bottom: solid 6px #0b5ed7;">{{ car.name }}</h1>
+    <h1 style=" font-size: 50px;" class="text-xxl-center m-3 pb-2 border-blue-bottom">{{ car.name }}</h1>
     <div class="row">
         <div class="col-md-6">
             <img src="{% static '/deps/images/cars/'|add:car.slug|add:'.jpeg' %}" class="img-fluid" alt="{{ car.name }}">
@@ -65,7 +65,7 @@
                 </tbody>
             </table>
             <div class="text-center d-flex m-4 col-lg">
-                <a href="#" class="color-blue btn-lg px-5 m-4 py-4 btn-block d-block text-white">{% trans "Book this car" %}</a>
+              <a href="{% url 'leasing:create_contract' car.code %}" class="color-blue btn-lg px-5 m-4 py-4 btn-block d-block text-white">{% trans "Book this car" %}</a>
                 <a href="#" class="color-blue btn-lg px-5 m-4 py-4 btn-block d-block text-white">{% trans "BUY NOW" %}</a>
             </div>
 
