@@ -7,13 +7,48 @@
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h1>{% trans "Create Leasing Contract" %}</h1>
-    <form method="post">
+<style>
+    body {
+        background-image: none;
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #0b5ed7;
+        color: white;
+    }
+     .package-info { display: none; }
+</style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#id_service_package').change(function() {
+                var package_name = $(this).val();
+                $('.package-info').hide();  // Приховати всі блоки з інформацією про пакети
+                $('#package_info_' + package_name).show();  // Показати блок з інформацією про обраний пакет
+            });
+        });
+    </script>
+
+
+<div class="container ">
+<form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">{% trans "Submit" %}</button>
     </form>
+    <!-- Блоки з інформацією про пакети, отримані з бази даних -->
+    {% for package in service_packages %}
+    <div id="package_info_{{ package.name }}" class="package-info">
+        <h3>{{ package.name }}</h3>
+        <p>{{ package.description }}</p>
+        <p>Price: ${{ package.price }}</p>
+    </div>
+    {% endfor %}
+{#    <h1>{% trans "Create Leasing Contract" %}</h1>#}
+{#    <form method="post">#}
+{#        {% csrf_token %}#}
+{#        {{ form.as_p }}#}
+{#        <button type="submit" class="btn btn-primary">{% trans "Submit" %}</button>#}
+{#    </form>#}
+
 </div>
 {% endblock %}
 

@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='leasingcontract',
             name='car',
-            field=models.ForeignKey(default='Chrysler 300', on_delete=django.db.models.deletion.CASCADE, to='cars.car', verbose_name='Car'),
+            field=models.ForeignKey(default='1', on_delete=django.db.models.deletion.CASCADE, to='cars.car', verbose_name='Car'),
             preserve_default=False,
         ),
         migrations.AlterField(

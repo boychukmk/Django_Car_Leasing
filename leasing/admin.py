@@ -1,21 +1,23 @@
-from django.contrib import admin
-from .models import ServicePackage, LeasingContract, Service
+# admin.py
 
+from django.contrib import admin
+from .models import Service, ServicePackage, LeasingContract
 
 class ServiceInline(admin.TabularInline):
-    model = Service
+    model = ServicePackage.services.through
     extra = 1
 
+@admin.register(Service)
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description')
+
+@admin.register(ServicePackage)
 class ServicePackageAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price')
-    search_fields = ('name',)
+    list_display = ('name', 'description', 'price')
     inlines = [ServiceInline]
 
-admin.site.register(ServicePackage, ServicePackageAdmin)
-
+@admin.register(LeasingContract)
 class LeasingContractAdmin(admin.ModelAdmin):
     list_display = ('user', 'car', 'start_date', 'end_date', 'service_package', 'total_price', 'monthly_payment')
-    search_fields = ('user__username', 'car__name')
-    list_filter = ('start_date', 'end_date', 'service_package')
 
-admin.site.register(LeasingContract, LeasingContractAdmin)
+admin.site.register(ServicePackage.services.through)

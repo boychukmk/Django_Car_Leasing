@@ -1,28 +1,23 @@
+
+# leasing.models.py
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 from cars.models import Car
+from django.conf import settings
+class Service(models.Model):
+    name = models.CharField(max_length=100, verbose_name=_("Name"))
+    description = models.TextField(verbose_name=_("Description"))
+
+    def __str__(self):
+        return self.name
 
 class ServicePackage(models.Model):
     name = models.CharField(max_length=100, verbose_name=_("Name"))
     description = models.TextField(verbose_name=_("Description"))
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name=_("Price"))
-
-    def __str__(self):
-        return self.name
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        previous_package = ServicePackage.objects.filter(pk__lt=self.pk).order_by('-pk').first()
-        if previous_package:
-            for service in previous_package.services.all():
-                self.services.add(service)
-
-
-class Service(models.Model):
-    package = models.ForeignKey(ServicePackage, on_delete=models.CASCADE, related_name='services', verbose_name=_("Package"))
-    name = models.CharField(max_length=100, verbose_name=_("Name"))
-    description = models.TextField(verbose_name=_("Description"))
+    services = models.ManyToManyField(Service, related_name='service_packages', verbose_name=_("Services"))
 
     def __str__(self):
         return self.name
