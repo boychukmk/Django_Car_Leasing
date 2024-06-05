@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from leasing.models import ServicePackage
 from .models import Car
 
 # def catalog(request):
@@ -10,7 +12,15 @@ from .models import Car
 
 def auto(request, car_code):
     car = Car.objects.get(code=car_code)
-    return render(request, 'auto.html', {'car': car})
+    service_packages = ServicePackage.objects.all()
+    base_leasing = ServicePackage.objects.filter(name="Base Leasing").first()
+    base_services_count = base_leasing.services.count() if base_leasing else 0
+
+    for package in service_packages:
+        package.base_services_count = base_services_count
+        package.premium_services_count = package.services.count() - base_services_count if package.name != "Base Leasing" else 0
+
+    return render(request, 'auto.html', {'car': car,'service_packages': service_packages})
 
 def catalog(request):
     order_by = request.GET.get('order_by', 'default')

@@ -19,11 +19,13 @@
     <style>
         body {
             background-image: url("{% static 'deps/images/background.jpeg' %}");
-            background-size: cover;}
+            background-size: cover;
+            padding-top:80px;
+        }
     </style>
 
 </head>
-<body>
+<body class="bg-secondary bg-opacity-25">
 <header>
     <nav class="navbar navbar-expand-lg custom-navbar fixed-top" data-bs-theme="dark">
         <div class="container">
@@ -40,6 +42,7 @@
                        <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{% url 'leasing:legalentities' %}">{% trans "For legal entities" %}</a></li>
                             <li><a class="dropdown-item" href="{% url 'leasing:individuals' %}">{% trans "For individuals" %}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'leasing:leasing_services' %}">{% trans "Types of servises" %}</a></li>
                        </ul>
                     </li>
                     <li class="nav-item position-relative">
@@ -69,9 +72,11 @@
 </header>
 
     <section>
-        <div class="container pt-5 mt-5">
+        <div class="container ">
             <!-- Content will be inserted here -->
-            {% block content %}{% endblock %}
+            {% block content %}
+
+            {% endblock %}
         </div>
     </section>
     <script src="{% static 'deps/js/jquery/jquery-3.7.0.min.js' %}"></script>

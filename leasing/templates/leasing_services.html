@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'deps/css/my_base_css.css' %}">
+    <link rel="stylesheet" href="{% static 'deps/css/my_css.css' %}">
+{% endblock %}
+{% block content %}
+    <style>
+    body {
+        background-image: none;
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #0b5ed7;
+        color: white;
+    }
+
+</style>
+<div class="container ">
+    <h1 class="text-center mb-4">{% trans "Types of service packages" %}</h1>
+    <div class="row">
+    {% if service_packages %}
+        {% for package in service_packages %}
+        <div class="col-md-4 mb-4 d-flex align-items-stretch">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body d-flex flex-column bg-secondary bg-opacity-10">
+                    <div>
+                        <h2 class="card-title text-primary">{{ package.name }}</h2>
+                        <p class="card-text">{{ package.description }}</p>
+                        <p class="card-text">
+                            <strong>{% trans "Base services" %}:</strong> {{ package.base_services_count }}
+                            <br><strong>{% trans "Premium services" %}:</strong> {{ package.premium_services_count }}
+                        </p>
+                        <p class="services-btn-more mt-3">
+                            <button class="btn btn-outline-primary btn-opacity w-100 bg-warning toggle-services-btn" type="button" data-bs-target="#collapse-{{ forloop.counter }}">
+                                {% trans "Детальніше" %}
+                            </button>
+                        </p>
+                        <div class="collapse services-collapse mt-2" id="collapse-{{ forloop.counter }}">
+                            <ul class="list-of-services">
+                                {% for service in package.services.all %}
+                                <li>{{ service.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <p class="card-text"><strong>{% trans "Price" %}:</strong> {{ package.price }} $</p>
+                        <p class="services-btn-choose mt-2">
+                            <a class="btn btn-success btn-square btn-opacity w-100 bg-primary text-warning" title="Обрати" data-msg="Користувач обрав {{ package.name }}" href="javascript:void(0)" onclick="popup('.callback-popup', this)">{% trans "Обрати" %}</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>Пакети лізингу не знайдено.</p>
+    {% endif %}
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const toggleButtons = document.querySelectorAll('.toggle-services-btn');
+    const collapses = document.querySelectorAll('.services-collapse');
+
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            let allOpen = true;
+
+            collapses.forEach(collapse => {
+                if (!collapse.classList.contains('show')) {
+                    allOpen = false;
+                }
+            });
+
+            collapses.forEach(collapse => {
+                const collapseInstance = new bootstrap.Collapse(collapse, {
+                    toggle: false
+                });
+                if (allOpen) {
+                    collapseInstance.hide();
+                } else {
+                    collapseInstance.show();
+                }
+            });
+
+            toggleButtons.forEach(btn => {
+                if (allOpen) {
+                    btn.textContent = '{% trans "Детальніше" %}';
+                } else {
+                    btn.textContent = '{% trans "Сховати" %}';
+                }
+            });
+        });
+
+        const targetId = button.getAttribute('data-bs-target');
+        const collapse = document.querySelector(targetId);
+        collapse.addEventListener('hidden.bs.collapse', function () {
+            toggleButtons.forEach(btn => {
+                btn.textContent = '{% trans "Детальніше" %}';
+            });
+        });
+        collapse.addEventListener('shown.bs.collapse', function () {
+            toggleButtons.forEach(btn => {
+                btn.textContent = '{% trans "Сховати" %}';
+            });
+        });
+    });
+});
+</script>
+
+
+{% endblock  %}
+
+
+

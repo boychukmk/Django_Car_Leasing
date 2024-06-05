@@ -19,6 +19,19 @@ class ServicePackage(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name=_("Price"))
     services = models.ManyToManyField(Service, related_name='service_packages', verbose_name=_("Services"))
 
+    def base_services_count(self):
+        # Логіка для визначення кількості послуг у пакеті "Base Leasing"
+        if self.name == "Base Leasing":
+            return self.services.count()
+        return 0
+
+    def premium_services_count(self):
+        # Логіка для визначення кількості преміум послуг
+        if self.name != "Base Leasing":
+            base_leasing = ServicePackage.objects.filter(name="Base Leasing").first()
+            base_services_count = base_leasing.services.count() if base_leasing else 0
+            return self.services.count() - base_services_count
+        return 0
     def __str__(self):
         return self.name
 

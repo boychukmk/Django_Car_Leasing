@@ -1,3 +1,4 @@
+
 body {
   /*background-image: url("bg-image.jpg");*/
   background-repeat: no-repeat;
@@ -33,38 +34,33 @@ body {
   font-size: 0.7rem;
 }
 
-/*.content img {*/
-/*  width: 100%;*/
-/*}*/
-/*.content ul {*/
-/*  list-style-type: disc;*/
-/*  margin-left: 20px;*/
-/*}*/
+
 .container img  {
     width: 100%;
 }
-
 .custom-list {
     list-style: none;
-    padding: 0  ;
-    background-color: rgba(239, 239, 240);, 1;
+    padding: 0;
+    background-color: rgba(239, 239, 240, 1);
     border-left: #0b5ed7 solid;
 }
 
 .custom-list li {
     color: black; /* Ensures text color is black */
     list-style: none;
-
+    display: flex; /* Uses flexbox for alignment */
+    align-items: center; /* Aligns items vertically */
 }
 
 .custom-list li::before {
     content: '•';
     color: #0b5ed7; /* Sets bullet color to blue */
     font-size: 30px;
-    margin: auto 13px;
-
-    /*position: absolute;*/
+    margin: 5px 10px;
+    display: inline-block;
+    line-height: 1; /* Ensures vertical alignment */
 }
+
 .border-blue-top{
     border-top: solid 6px #0b5ed7;
     padding-top: 10px;
@@ -75,3 +71,68 @@ body {
     margin-bottom: 10px;
 }
 
+.img-selected-car {
+    width: 5px; /* Встановіть бажану ширину */
+    /*height: auto; !* Зберігає пропорції зображення *!*/
+}
+.list-of-services {
+    list-style: none;
+    padding: 0;
+    /*background-color: rgba(1, 94, 215, 0.4); !* Light blue background with opacity *!*/
+    /*border-left: #0b5ed7 solid 5px;*/
+}
+.list-of-services li {
+    color: black; /* Ensures text color is black */
+    list-style: none;
+    margin-left: 10px;
+    padding-left: 50px; /* Adds space for the background image */
+    background: url("/static/deps/icons/check-mark.png") no-repeat left center;
+    background-size: 30px 30px; /* Ensures the background image is 20px by 20px */
+    padding-bottom: 10px;
+    display: flex; /* Uses flexbox for alignment */
+    align-items: center; /* Aligns items vertically */
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items to the top */
+    flex-grow: 1;
+}
+.card-body > div:first-child {
+    flex-grow: 1;
+}
+.card-body .card-text:last-child {
+    margin-top: auto;
+}
+
+
+/* Collapse styles */
+.services-collapse {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+}
+
+.services-collapse.show {
+    max-height: 250px;
+    overflow-y: auto;
+
+}
+.w-50 {
+    width: 50% !important; /* Make buttons half width */
+
+}
+
+.btn-opacity {
+    opacity: 0.9; /* Add opacity */
+}
+
+.btn-opacity:hover {
+    opacity: 1; /* Full opacity on hover */
+}

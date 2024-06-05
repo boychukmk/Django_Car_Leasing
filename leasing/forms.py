@@ -50,13 +50,13 @@ from django.utils.translation import gettext_lazy as _
 #         self.fields['package_info'].widget.attrs.update({'class': 'form-control', 'onclick': 'show_package_details()'})
 
 
-# Форма
 from django import forms
 from .models import LeasingContract
+from django.utils.translation import gettext_lazy as _
 
 class LeasingContractForm(forms.ModelForm):
-    car_info = forms.CharField(label=_("Selected Car"), required=True, widget=forms.TextInput(attrs={'readonly': 'readonly'}))
-    package_info = forms.CharField(label=_("Selected Package"), required=True, widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+    #  car_info = forms.CharField(label=_("Selected Car"), required=True, widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+    # package_info = forms.CharField(label=_("Selected Package"), required=True, widget=forms.TextInput(attrs={'readonly': 'readonly'}))
 
     class Meta:
         model = LeasingContract
@@ -66,16 +66,16 @@ class LeasingContractForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['start_date'].widget.attrs.update({'type': 'date'})
         self.fields['end_date'].widget.attrs.update({'type': 'date'})
-        if car:
-            self.fields['car_info'].initial = \
-                f"{car.name}, Price: {car.price}, Year: {car.year}, Fuel Type: {car.get_fuel_type_display()}," \
-                f" Transmission: {car.get_transmission_display()}, Mileage: {car.mileage}, " \
-                f"Drive Type: {car.get_drive_type_display()}, Color: {car.get_color_display()}, " \
-                f"Engine Capacity: {car.engine_capacity}L"
-            self.fields['car_info'].widget.attrs.update({'class': 'form-control col-md-7'})
+        # if car:
+        #     self.fields['car_info'].initial = \
+        #         f"{car.name}, Price: {car.price}, Year: {car.year}, Fuel Type: {car.get_fuel_type_display()}," \
+        #         f" Transmission: {car.get_transmission_display()}, Mileage: {car.mileage}, " \
+        #         f"Drive Type: {car.get_drive_type_display()}, Color: {car.get_color_display()}, " \
+        #         f"Engine Capacity: {car.engine_capacity}L"
+        #     self.fields['car_info'].widget.attrs.update({'class': 'form-control col-md-7'})
 
-        if package:
-            self.fields['package_info'].initial = f"{package.name}: {package.description}, Price: {package.price}"
+        # if package:
+        #     self.fields['package_info'].initial = f"{package.name}: {package.description}, Price: {package.price}"
 
     def clean_start_date(self):
         start_date = self.cleaned_data.get('start_date')
@@ -99,5 +99,4 @@ class LeasingContractForm(forms.ModelForm):
     def clean_service_package(self):
         service_package = self.cleaned_data.get('service_package')
         if not service_package:
-            raise forms.ValidationError(_("Please select a service package."))
-        return service_package
+            raise
