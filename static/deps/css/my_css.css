@@ -124,6 +124,7 @@ body {
     overflow-y: auto;
 
 }
+
 .w-50 {
     width: 50% !important; /* Make buttons half width */
 
@@ -135,4 +136,10 @@ body {
 
 .btn-opacity:hover {
     opacity: 1; /* Full opacity on hover */
+}
+
+.scrollable-services {
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 15px; /* Optional, to add some space for the scrollbar */
 }

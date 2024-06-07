@@ -1,44 +1,109 @@
 {#{% extends "base.html" %}#}
-{#{% load static i18n %}#}
-{##}
+{#{% load static %}#}
+{#{% load i18n %}#}
 {#{% block css %}#}
 {#    <link rel="stylesheet" href="{% static "deps/css/my_base_css.css" %}">#}
 {#    <link rel="stylesheet" href="{% static "deps/css/my_css.css" %}">#}
 {#{% endblock %}#}
-{##}
 {#{% block content %}#}
-{#<style>#}
-{#    body {#}
-{#        background-image: none;#}
-{#    }#}
-{#    .table-striped tbody tr:nth-of-type(odd) {#}
-{#        background-color: #0b5ed7;#}
-{#        color: white;#}
-{#    }#}
-{#     .package-info { display: none; }#}
-{#</style>#}
-{##}
-{#<div class="container ">#}
-{##}
-{#<form method="post">#}
-{#        {% csrf_token %}#}
-{#        {{ form.as_p }}#}
-{#     <button type="submit" class="btn btn-primary">{% trans "Submit" %}</button>#}
-{#    </form>#}
-{#    <!-- Блоки з інформацією про пакети, отримані з бази даних -->#}
-{#    {% for package in service_packages %}#}
-{#    <div id="package_info_{{ package.name }}" class="package-info">#}
-{#        <h3>{{ package.name }}</h3>#}
-{#        <p>{{ package.description }}</p>#}
-{#        <p>Price: ${{ package.price }}</p>#}
+{#<div class="container mt-5">#}
+{#    <div class="row">#}
+{#        <!-- Left Column with Form and Package Details -->#}
+{#        <div class="col-md-7 d-flex flex-column">#}
+{#            <!-- User Profile Section -->#}
+{#            <div class="flex-fill bg-primary p-4 mb-4 mx-2 rounded custom-shadow">#}
+{#                <form method="post" id="leasing-form">#}
+{#                    {% csrf_token %}#}
+{#                    {{ form.as_p }}#}
+{#                    <button type="submit" class="btn btn-primary">{% trans "Submit" %}</button>#}
+{#                </form>#}
+{#            </div>#}
+{#            <!-- Selected Package Section -->#}
+{#            <div class="flex-fill bg-warning p-4 mb-4 mx-2 rounded custom-shadow">#}
+{#                <h3 class="text-center mb-4">{% trans "Selected Package" %}</h3>#}
+{#                <div class="container">#}
+{#                    <div class="card">#}
+{#                        <div class="card-body" id="package-details">#}
+{#                            <h5 class="card-title" id="package-name">{% if selected_package %}{{ selected_package.name }}{% endif %}</h5>#}
+{#                            <p class="card-text" id="package-description">{% if selected_package %}{{ selected_package.description }}{% endif %}</p>#}
+{#                            <p class="card-text" id="package-price">{% if selected_package %}{{ selected_package.price }} ${% endif %}</p>#}
+{#                            <p class="card-text" id="package-services">#}
+{#                                {% if selected_package %}#}
+{#                                    <strong>{% trans "Services Included" %}:</strong>#}
+{#                                    <ul class="custom-list">#}
+{#                                        {% for service in selected_package.services.all %}#}
+{#                                            <li>{{ service.name }}</li>#}
+{#                                        {% endfor %}#}
+{#                                    </ul>#}
+{#                                {% endif %}#}
+{#                            </p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <!-- Right Column with Car Details -->#}
+{#        <div class="col-md-5 d-flex flex-column">#}
+{#            <div class="flex-fill bg-secondary bg-opacity-75 p-4 mb-4 mx-2 rounded custom-shadow">#}
+{#                <h3 class="text-center mb-4 ">{% trans "Selected Car" %}</h3>#}
+{#                <div class="container ">#}
+{#                    <div class="card ">#}
+{#                        <div class="card-body bg-white bg-opacity-75">#}
+{#                            <img src="{% static '/deps/images/cars/'|add:car.slug|add:'.jpeg' %}" class="img-selected-car" alt="{{ car.name }}">#}
+{#                            <h5 class="card-title">{{ car.name }}</h5>#}
+{#                            <p class="card-text">#}
+{#                                {% if car %}#}
+{#                                    <ul class="custom-list">#}
+{#                                        <li>{% trans "Price" %}: {{ car.price }} $</li>#}
+{#                                        <li>{% trans "Year" %}: {{ car.year }}</li>#}
+{#                                        <li>{% trans "Fuel Type" %}: {{ car.get_fuel_type_display }}</li>#}
+{#                                        <li>{% trans "Transmission" %}: {{ car.get_transmission_display }}</li>#}
+{#                                        <li>{% trans "Mileage" %}: {{ car.mileage }}</li>#}
+{#                                        <li>{% trans "Drive Type" %}: {{ car.get_drive_type_display }}</li>#}
+{#                                        <li>{% trans "Color" %}: {{ car.get_color_display }}</li>#}
+{#                                        <li>{% trans "Engine Capacity" %}: {{ car.engine_capacity }}L</li>#}
+{#                                    </ul>#}
+{#                                {% endif %}#}
+{#                            </p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
 {#    </div>#}
-{#    {% endfor %}#}
-{##}
-{##}
-{##}
 {#</div>#}
-{#{% endblock %}#}
 {##}
+{#<script>#}
+{#document.addEventListener('DOMContentLoaded', function() {#}
+{#    const servicePackageSelect = document.querySelector('#id_service_package');#}
+{#    const packageName = document.querySelector('#package-name');#}
+{#    const packageDescription = document.querySelector('#package-description');#}
+{#    const packagePrice = document.querySelector('#package-price');#}
+{#    const packageServices = document.querySelector('#package-services');#}
+{##}
+{#    servicePackageSelect.addEventListener('change', function() {#}
+{#        const selectedPackageId = this.value;#}
+{#        if (selectedPackageId) {#}
+{#            fetch(`/get-package-details/${selectedPackageId}/`)#}
+{#                .then(response => response.text())#}
+{#                .then(html => {#}
+{#                    const parser = new DOMParser();#}
+{#                    const doc = parser.parseFromString(html, 'text/html');#}
+{#                    packageName.textContent = doc.querySelector('#package-name').textContent;#}
+{#                    packageDescription.textContent = doc.querySelector('#package-description').textContent;#}
+{#                    packagePrice.textContent = doc.querySelector('#package-price').textContent;#}
+{#                    packageServices.innerHTML = doc.querySelector('#package-services').innerHTML;#}
+{#                });#}
+{#        } else {#}
+{#            packageName.textContent = '';#}
+{#            packageDescription.textContent = '';#}
+{#            packagePrice.textContent = '';#}
+{#            packageServices.innerHTML = '';#}
+{#        }#}
+{#    });#}
+{#});#}
+{#</script>#}
+{#{% endblock %}#}
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
@@ -58,6 +123,11 @@
                     {{ form.as_p }}
                     <button type="submit" class="btn btn-primary">{% trans "Submit" %}</button>
                 </form>
+                {% if error_message %}
+                    <div class="alert alert-danger mt-3">
+                        {{ error_message }}
+                    </div>
+                {% endif %}
             </div>
             <!-- Selected Package Section -->
             <div class="flex-fill bg-warning p-4 mb-4 mx-2 rounded custom-shadow">
@@ -65,10 +135,19 @@
                 <div class="container">
                     <div class="card">
                         <div class="card-body" id="package-details">
-                            <h5 class="card-title" id="package-name"></h5>
-                            <p class="card-text" id="package-description"></p>
-                            <p class="card-text" id="package-price"></p>
-                            <div class="card-text" id="package-services"></div>
+                            {% if selected_package %}
+                                <h5 class="card-title">{{ selected_package.name }}</h5>
+                                <p class="card-text">{{ selected_package.description }}</p>
+                                <p class="card-text">{% trans "Price" %}: {{ selected_package.price }} $</p>
+                                <p class="card-text">{% trans "Services Included" %}:</p>
+                                <ul class="list-of-services scrollable-services">
+                                    {% for service in selected_package.services.all %}
+                                        <li>{{ service.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <p>{% trans "No package selected" %}</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -77,20 +156,16 @@
         <!-- Right Column with Car Details -->
         <div class="col-md-5 d-flex flex-column">
             <div class="flex-fill bg-secondary bg-opacity-75 p-4 mb-4 mx-2 rounded custom-shadow">
-                <h3 class="text-center mb-4">{% trans "Selected Car" %}</h3>
-                <div class="container">
-                    <div class="card">
+                <h3 class="text-center mb-4 ">{% trans "Selected Car" %}</h3>
+                <div class="container ">
+                    <div class="card ">
                         <div class="card-body bg-white bg-opacity-75">
                             <img src="{% static '/deps/images/cars/'|add:car.slug|add:'.jpeg' %}" class="img-selected-car" alt="{{ car.name }}">
                             <h5 class="card-title">{{ car.name }}</h5>
                             <p class="card-text">
                                 {% if car %}
                                     <ul class="custom-list">
-                                        {% if car.discount %}
-                                            <li>{% trans "Price" %}: <span style="text-decoration: line-through;">{{ car.price }} $</span> <span class="text-danger">{{ car.discounted_price }} $</span></li>
-                                        {% else %}
-                                            <li>{% trans "Price" %}: {{ car.price }} $</li>
-                                        {% endif %}
+                                        <li>{% trans "Price" %}: {{ car.price }} $</li>
                                         <li>{% trans "Year" %}: {{ car.year }}</li>
                                         <li>{% trans "Fuel Type" %}: {{ car.get_fuel_type_display }}</li>
                                         <li>{% trans "Transmission" %}: {{ car.get_transmission_display }}</li>
@@ -111,154 +186,48 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('leasing-form');
     const servicePackageSelect = document.querySelector('#id_service_package');
-    const packageName = document.querySelector('#package-name');
-    const packageDescription = document.querySelector('#package-description');
-    const packagePrice = document.querySelector('#package-price');
-    const packageServices = document.querySelector('#package-services');
 
-    servicePackageSelect.addEventListener('change', function() {
-        const selectedPackageName = this.value;
-        if (selectedPackageName) {
-            fetch(`/get-package-details/${selectedPackageName}/`)
-                .then(response => response.json())
-                .then(data => {
-                    packageName.textContent = data.name;
-                    packageDescription.textContent = data.description;
-                    packagePrice.textContent = `${data.price} $`;
-                    packageServices.innerHTML = `<strong>{% trans "Services Included" %}:</strong><ul>${data.services.map(service => `<li>${service}</li>`).join('')}</ul>`;
-                });
-        } else {
-            packageName.textContent = '';
-            packageDescription.textContent = '';
-            packagePrice.textContent = '';
-            packageServices.innerHTML = '';
+    // Load saved form data from local storage
+    const savedFormData = JSON.parse(localStorage.getItem('leasingFormData'));
+    if (savedFormData) {
+        Object.keys(savedFormData).forEach(key => {
+            const input = form.querySelector(`[name=${key}]`);
+            if (input) input.value = savedFormData[key];
+        });
+
+        if (savedFormData['service_package']) {
+            servicePackageSelect.value = savedFormData['service_package'];
+            updatePackageDetails(savedFormData['service_package']);
         }
+    }
+
+    // Save form data to local storage before page reload
+    servicePackageSelect.addEventListener('change', function() {
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => (data[key] = value));
+        localStorage.setItem('leasingFormData', JSON.stringify(data));
+
+        const selectedPackageId = this.value;
+        const url = new URL(window.location.href);
+        url.searchParams.set('package', selectedPackageId);
+        window.location.href = url.toString();
     });
+
+    function updatePackageDetails(packageId) {
+        fetch(`/get-package-details/${packageId}/`)
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                document.querySelector('#package-name').textContent = doc.querySelector('#package-name').textContent;
+                document.querySelector('#package-description').textContent = doc.querySelector('#package-description').textContent;
+                document.querySelector('#package-price').textContent = doc.querySelector('#package-price').textContent;
+                document.querySelector('#package-services').innerHTML = doc.querySelector('#package-services').innerHTML;
+            });
+    }
 });
 </script>
 {% endblock %}
-
-
-
-{#{% extends "base.html" %}#}
-{#{% load static %}#}
-{#{% load i18n %}#}
-{#{% block css %}#}
-{#    <link rel="stylesheet" href="{% static "deps/css/my_base_css.css" %}">#}
-{#    <link rel="stylesheet" href="{% static "deps/css/my_css.css" %}">#}
-{#{% endblock %}#}
-{#{% block content %}#}
-{#<div class="container mt-5">#}
-{#    <div class="row">#}
-{#        <!-- Left Column with Form and Package Details -->#}
-{#        <div class="col-md-7 d-flex flex-column">#}
-{#            <!-- Form Section -->#}
-{#            <div class="flex-fill bg-primary p-4 mb-4 mx-2 rounded custom-shadow">#}
-{#                <form method="post">#}
-{#                    {% csrf_token %}#}
-{#                    {{ form.as_p }}#}
-{#                    <button type="submit" class="btn btn-primary">{% trans "Submit" %}</button>#}
-{#                </form>#}
-{#            </div>#}
-{#            <!-- Selected Package Section -->#}
-{#            <div class="flex-fill bg-primary p-4 mb-4 mx-2 rounded custom-shadow">#}
-{#                <h3 class="text-center mb-4">{% trans "Selected Package" %}</h3>#}
-{#                <div class="container">#}
-{#                    <div class="card">#}
-{#                        <div class="card-body" id="package-details">#}
-{#                            <h5 class="card-title" id="package-name"></h5>#}
-{#                            <p class="card-text" id="package-description"></p>#}
-{#                            <p class="card-text" id="package-price"></p>#}
-{#                            <p class="card-text" id="package-services"></p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#            <!-- Selected Package Section -->#}
-{#            <div class="flex-fill bg-primary p-4 mb-4 mx-2 rounded custom-shadow">#}
-{#                <h3 class="text-center mb-4">{% trans "Selected Package" %}</h3>#}
-{#                <div class="container">#}
-{#                    <div class="card">#}
-{#                        <div class="card-body">#}
-{#                            <h5 class="card-title">{{ form.package_info.value }}</h5>#}
-{#                            <p class="card-text">#}
-{#                                {% if package %}#}
-{#                                    <ul>#}
-{#                                        <li>{% trans "Description" %}: {{ package.description }}</li>#}
-{#                                        <li>{% trans "Price" %}: {{ package.price }}</li>#}
-{#                                    </ul>#}
-{#                                {% endif %}#}
-{#                            </p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#        <!-- Right Column with Car Details -->#}
-{#        <div class="col-md-4 d-flex flex-column">#}
-{#            <div class="flex-fill bg-primary p-4 mb-4 mx-2 rounded custom-shadow">#}
-{#                <h3 class="text-center mb-4">{% trans "Selected Car" %}</h3>#}
-{#                <div class="container">#}
-{#                    <div class="card">#}
-{#                        <div class="card-body">#}
-{#                            <img src="{% static '/deps/images/cars/'|add:car.slug|add:'.jpeg' %}" class="img-selected-car" alt="{{ car.name }}">#}
-{#                            <h5 class="card-title">{{ car.name }}</h5>#}
-{#                            <p class="card-text">#}
-{#                                {% if car %}#}
-{#                                    <ul>#}
-{#                                        <li>{% trans "Price" %}: {{ car.price }} $</li>#}
-{#                                        <li>{% trans "Year" %}: {{ car.year }}</li>#}
-{#                                        <li>{% trans "Fuel Type" %}: {{ car.get_fuel_type_display }}</li>#}
-{#                                        <li>{% trans "Transmission" %}: {{ car.get_transmission_display }}</li>#}
-{#                                        <li>{% trans "Mileage" %}: {{ car.mileage }}</li>#}
-{#                                        <li>{% trans "Drive Type" %}: {{ car.get_drive_type_display }}</li>#}
-{#                                        <li>{% trans "Color" %}: {{ car.get_color_display }}</li>#}
-{#                                        <li>{% trans "Engine Capacity" %}: {{ car.engine_capacity }}L</li>#}
-{#                                    </ul>#}
-{#                                {% endif %}#}
-{#                            </p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
-{#{% endblock %}#}
-{##}
-{##}
-{#{% block js %}#}
-{#<script>#}
-{#document.addEventListener('DOMContentLoaded', function() {#}
-{#    const servicePackageSelect = document.querySelector('#id_service_package');#}
-{#    const packageDetails = document.querySelector('#package-details');#}
-{#    const packageDescription = document.querySelector('#package-description');#}
-{##}
-{#    servicePackageSelect.addEventListener('change', function() {#}
-{#        const selectedPackageId = this.value;#}
-{#        if (selectedPackageId) {#}
-{#            fetch(`/get-package-details/${selectedPackageId}/`)#}
-{#                .then(response => response.json())#}
-{#                .then(data => {#}
-{#                    packageDetails.querySelector('.card-title').textContent = data.name;#}
-{#                    packageDescription.innerHTML = `#}
-{#                        <p><strong>{% trans "Description" %}:</strong> ${data.description}</p>#}
-{#                        <p><strong>{% trans "Price" %}:</strong> ${data.price}</p>#}
-{#                        <p><strong>{% trans "Services Included" %}:</strong></p>#}
-{#                        <ul>#}
-{#                            ${data.services.map(service => `<li>${service}</li>`).join('')}#}
-{#                        </ul>#}
-{#                    `;#}
-{#                });#}
-{#        } else {#}
-{#            packageDetails.querySelector('.card-title').textContent = '';#}
-{#            packageDescription.innerHTML = '';#}
-{#        }#}
-{#    });#}
-{#});#}
-{#</script>#}
-{#{% endblock %}#}
-
-

@@ -76,3 +76,4 @@ class Car(models.Model):
     class Meta:
         verbose_name = _("Car")
         verbose_name_plural = _("Cars")
+        ordering = ("id",)

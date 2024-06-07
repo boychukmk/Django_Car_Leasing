@@ -4,6 +4,7 @@ from .models import ServicePackage, LeasingContract
 from .forms import LeasingContractForm
 from django.contrib.auth.decorators import login_required
 from cars.models import Car
+from django.utils.translation import gettext_lazy as _
 from decimal import Decimal
 
 def legalentities(request):
@@ -11,22 +12,25 @@ def legalentities(request):
 
 def individuals(request):
     return render(request, 'individuals.html')
-def get_package_details(request, package_name):
-    package = get_object_or_404(ServicePackage, name=package_name)
-    services = package.services.all()
-    services_list = [service.name for service in services]
-    data = {
-        'name': package.name,
-        'description': package.description,
-        'price': str(package.price),
-        'services': services_list
-    }
-    return JsonResponse(data)
+# def get_package_details(request, package_name):
+#     package = get_object_or_404(ServicePackage, name=package_name)
+#     services = package.services.all()
+#     services_list = [service.name for service in services]
+#     data = {
+#         'name': package.name,
+#         'description': package.description,
+#         'price': str(package.price),
+#         'services': services_list
+#     }
+#     return JsonResponse(data)
+
 
 @login_required
 def create_contract(request, car_code):
     car = get_object_or_404(Car, code=car_code)
     service_packages = ServicePackage.objects.all()
+    selected_package = None
+    error_message = None
 
     if request.method == 'POST':
         form = LeasingContractForm(request.POST)
@@ -34,15 +38,35 @@ def create_contract(request, car_code):
             contract = form.save(commit=False)
             contract.user = request.user
             contract.car = car
-            contract.total_price = contract.service_package.price * ((contract.end_date - contract.start_date).days // 30)
-            contract.monthly_payment = contract.total_price / ((contract.end_date - contract.start_date).days // 30)
-            contract.save()
-            return redirect('leasing:success')  # Замініть на вашу фактичну URL-адресу успіху
+            overlapping_contracts = LeasingContract.objects.filter(
+                car=car,
+                start_date__lt=contract.end_date,
+                end_date__gt=contract.start_date
+            )
+            if overlapping_contracts.exists():
+                error_message = _("This car is already booked during the selected dates. "
+                                  "Available after "+
+                                  str(contract.end_date))
+            else:
+                contract.total_price = contract.service_package.price * ((contract.end_date - contract.start_date).days // 30)
+                contract.monthly_payment = contract.total_price / ((contract.end_date - contract.start_date).days // 30)
+                contract.save()
+                return redirect('leasing:success')
     else:
         form = LeasingContractForm()
 
-    return render(request, 'create_contract.html', {'form': form, 'car': car, 'service_packages': service_packages})
+    package_id = request.GET.get('package')
+    if package_id:
+        selected_package = get_object_or_404(ServicePackage, id=package_id)
+        form.fields['service_package'].initial = selected_package
 
+    return render(request, 'create_contract.html', {
+        'form': form,
+        'car': car,
+        'service_packages': service_packages,
+        'selected_package': selected_package,
+        'error_message': error_message,
+    })
 
 def success(request):
     return render(request, 'success.html')

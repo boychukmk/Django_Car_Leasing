@@ -41,7 +41,7 @@ class LeasingContract(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE, verbose_name=_("Car"))
     start_date = models.DateField(verbose_name=_("Start Date"))
     end_date = models.DateField(verbose_name=_("End Date"))
-    service_package = models.ForeignKey(ServicePackage, on_delete=models.CASCADE, verbose_name=_("Service Package"))
+    service_package = models.ForeignKey(ServicePackage, on_delete=models.CASCADE, verbose_name=_("Service Package") )
     total_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name=_("Total Price"))
     monthly_payment = models.DecimalField(max_digits=10, decimal_places=2, verbose_name=_("Monthly Payment"))
 
