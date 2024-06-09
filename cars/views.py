@@ -42,7 +42,7 @@ def catalog(request):
     elif query:
         cars = q_search(query)
 
-    paginator = Paginator(cars, 12)  # Show 12 cars per page
+    paginator = Paginator(cars, 9)  # Show 12 cars per page
     page = request.GET.get('page', 1)
 
     try:

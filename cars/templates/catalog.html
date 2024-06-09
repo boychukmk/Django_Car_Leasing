@@ -48,7 +48,7 @@
     <div class="dropdown mb-2">
         <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            Фильтры
+            {% trans "Filters" %}
         </button>
 
         <form action="{% if request.GET.q %}{% url "catalog:search" %}{% else %}{% url "catalog:index"%}{% endif %}" method="get" class="dropdown-menu bg-dark" data-bs-theme="dark">
@@ -61,7 +61,7 @@
                     {% trans "Discounted" %}
                 </label>
             </div>
-            <p class="text-white mx-3 mt-3">Сортировать:</p>
+            <p class="text-white mx-3 mt-3">{% trans Sort %}</p>
             <div class="form-check text-white mx-3">
                 <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault1" value="default"
                 {% if not request.GET.order_by or request.GET.order_by == 'default' %}checked{% endif %}>

@@ -37,7 +37,7 @@ class ServicePackage(models.Model):
 
 
 class LeasingContract(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_("User"))
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=_("User"))
     car = models.ForeignKey(Car, on_delete=models.CASCADE, verbose_name=_("Car"))
     start_date = models.DateField(verbose_name=_("Start Date"))
     end_date = models.DateField(verbose_name=_("End Date"))

@@ -9,7 +9,7 @@ urlpatterns = [
     path('catalog/', include('cars.urls', namespace='catalog')),
     path('leasing/', include('leasing.urls', namespace='leasing')),
     path('set-language/', set_language, name='set_language'),
-    # path('user/', include('users.urls', namespace='user')),
+    path('user/', include('users.urls', namespace='user')),
 
 ]
 

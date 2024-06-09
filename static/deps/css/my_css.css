@@ -143,3 +143,9 @@ body {
     overflow-y: auto;
     padding-right: 15px; /* Optional, to add some space for the scrollbar */
 }
+.border-warning-doc{
+    border: #ffc107 solid 5px ;
+}
+.border-primary-doc{
+    border: #0d6efd solid 5px ;
+}

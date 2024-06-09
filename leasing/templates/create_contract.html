@@ -1,109 +1,3 @@
-{#{% extends "base.html" %}#}
-{#{% load static %}#}
-{#{% load i18n %}#}
-{#{% block css %}#}
-{#    <link rel="stylesheet" href="{% static "deps/css/my_base_css.css" %}">#}
-{#    <link rel="stylesheet" href="{% static "deps/css/my_css.css" %}">#}
-{#{% endblock %}#}
-{#{% block content %}#}
-{#<div class="container mt-5">#}
-{#    <div class="row">#}
-{#        <!-- Left Column with Form and Package Details -->#}
-{#        <div class="col-md-7 d-flex flex-column">#}
-{#            <!-- User Profile Section -->#}
-{#            <div class="flex-fill bg-primary p-4 mb-4 mx-2 rounded custom-shadow">#}
-{#                <form method="post" id="leasing-form">#}
-{#                    {% csrf_token %}#}
-{#                    {{ form.as_p }}#}
-{#                    <button type="submit" class="btn btn-primary">{% trans "Submit" %}</button>#}
-{#                </form>#}
-{#            </div>#}
-{#            <!-- Selected Package Section -->#}
-{#            <div class="flex-fill bg-warning p-4 mb-4 mx-2 rounded custom-shadow">#}
-{#                <h3 class="text-center mb-4">{% trans "Selected Package" %}</h3>#}
-{#                <div class="container">#}
-{#                    <div class="card">#}
-{#                        <div class="card-body" id="package-details">#}
-{#                            <h5 class="card-title" id="package-name">{% if selected_package %}{{ selected_package.name }}{% endif %}</h5>#}
-{#                            <p class="card-text" id="package-description">{% if selected_package %}{{ selected_package.description }}{% endif %}</p>#}
-{#                            <p class="card-text" id="package-price">{% if selected_package %}{{ selected_package.price }} ${% endif %}</p>#}
-{#                            <p class="card-text" id="package-services">#}
-{#                                {% if selected_package %}#}
-{#                                    <strong>{% trans "Services Included" %}:</strong>#}
-{#                                    <ul class="custom-list">#}
-{#                                        {% for service in selected_package.services.all %}#}
-{#                                            <li>{{ service.name }}</li>#}
-{#                                        {% endfor %}#}
-{#                                    </ul>#}
-{#                                {% endif %}#}
-{#                            </p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#        <!-- Right Column with Car Details -->#}
-{#        <div class="col-md-5 d-flex flex-column">#}
-{#            <div class="flex-fill bg-secondary bg-opacity-75 p-4 mb-4 mx-2 rounded custom-shadow">#}
-{#                <h3 class="text-center mb-4 ">{% trans "Selected Car" %}</h3>#}
-{#                <div class="container ">#}
-{#                    <div class="card ">#}
-{#                        <div class="card-body bg-white bg-opacity-75">#}
-{#                            <img src="{% static '/deps/images/cars/'|add:car.slug|add:'.jpeg' %}" class="img-selected-car" alt="{{ car.name }}">#}
-{#                            <h5 class="card-title">{{ car.name }}</h5>#}
-{#                            <p class="card-text">#}
-{#                                {% if car %}#}
-{#                                    <ul class="custom-list">#}
-{#                                        <li>{% trans "Price" %}: {{ car.price }} $</li>#}
-{#                                        <li>{% trans "Year" %}: {{ car.year }}</li>#}
-{#                                        <li>{% trans "Fuel Type" %}: {{ car.get_fuel_type_display }}</li>#}
-{#                                        <li>{% trans "Transmission" %}: {{ car.get_transmission_display }}</li>#}
-{#                                        <li>{% trans "Mileage" %}: {{ car.mileage }}</li>#}
-{#                                        <li>{% trans "Drive Type" %}: {{ car.get_drive_type_display }}</li>#}
-{#                                        <li>{% trans "Color" %}: {{ car.get_color_display }}</li>#}
-{#                                        <li>{% trans "Engine Capacity" %}: {{ car.engine_capacity }}L</li>#}
-{#                                    </ul>#}
-{#                                {% endif %}#}
-{#                            </p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
-{##}
-{#<script>#}
-{#document.addEventListener('DOMContentLoaded', function() {#}
-{#    const servicePackageSelect = document.querySelector('#id_service_package');#}
-{#    const packageName = document.querySelector('#package-name');#}
-{#    const packageDescription = document.querySelector('#package-description');#}
-{#    const packagePrice = document.querySelector('#package-price');#}
-{#    const packageServices = document.querySelector('#package-services');#}
-{##}
-{#    servicePackageSelect.addEventListener('change', function() {#}
-{#        const selectedPackageId = this.value;#}
-{#        if (selectedPackageId) {#}
-{#            fetch(`/get-package-details/${selectedPackageId}/`)#}
-{#                .then(response => response.text())#}
-{#                .then(html => {#}
-{#                    const parser = new DOMParser();#}
-{#                    const doc = parser.parseFromString(html, 'text/html');#}
-{#                    packageName.textContent = doc.querySelector('#package-name').textContent;#}
-{#                    packageDescription.textContent = doc.querySelector('#package-description').textContent;#}
-{#                    packagePrice.textContent = doc.querySelector('#package-price').textContent;#}
-{#                    packageServices.innerHTML = doc.querySelector('#package-services').innerHTML;#}
-{#                });#}
-{#        } else {#}
-{#            packageName.textContent = '';#}
-{#            packageDescription.textContent = '';#}
-{#            packagePrice.textContent = '';#}
-{#            packageServices.innerHTML = '';#}
-{#        }#}
-{#    });#}
-{#});#}
-{#</script>#}
-{#{% endblock %}#}
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
@@ -112,12 +6,17 @@
     <link rel="stylesheet" href="{% static "deps/css/my_css.css" %}">
 {% endblock %}
 {% block content %}
+    <style>
+        body {
+            background-image: none;
+        }
+    </style>
 <div class="container mt-5">
     <div class="row">
         <!-- Left Column with Form and Package Details -->
         <div class="col-md-7 d-flex flex-column">
             <!-- User Profile Section -->
-            <div class="flex-fill bg-primary p-4 mb-4 mx-2 rounded custom-shadow">
+            <div class="flex-fill  p-4 mb-4 mx-2 rounded border-primary-doc">
                 <form method="post" id="leasing-form">
                     {% csrf_token %}
                     {{ form.as_p }}
@@ -130,7 +29,7 @@
                 {% endif %}
             </div>
             <!-- Selected Package Section -->
-            <div class="flex-fill bg-warning p-4 mb-4 mx-2 rounded custom-shadow">
+            <div class="flex-fill  p-4 mb-4 mx-2 rounded border-warning-doc">
                 <h3 class="text-center mb-4">{% trans "Selected Package" %}</h3>
                 <div class="container">
                     <div class="card">
@@ -155,7 +54,7 @@
         </div>
         <!-- Right Column with Car Details -->
         <div class="col-md-5 d-flex flex-column">
-            <div class="flex-fill bg-secondary bg-opacity-75 p-4 mb-4 mx-2 rounded custom-shadow">
+            <div class="flex-fill bg-secondary bg-opacity-75 p-4 mb-4 mx-2 rounded ">
                 <h3 class="text-center mb-4 ">{% trans "Selected Car" %}</h3>
                 <div class="container ">
                     <div class="card ">
