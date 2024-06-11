@@ -46,29 +46,6 @@
     <div class="row mt-3">
         <!-- Left Column with Form and Package Details -->
         <div class="col-md-7 d-flex flex-column ">
-            <!-- Selected Package Section -->
-             <div class="p-4 mb-4 mx-2 rounded shadow auto-height bg-white bg-opacity-50">
-                <h3 class="text-center mb-4">{% trans "Selected Package" %}</h3>
-                <div class="container">
-                    <div class="card ">
-                        <div class="card-body " id="package-details">
-                            {% if selected_package %}
-                                <h5 class="card-title">{{ selected_package.name }}</h5>
-                                <p class="card-text">{{ selected_package.description }}</p>
-                                <p class="card-text">{% trans "Price" %}: <span id="package-price">{{ selected_package.price }}</span> $</p>
-                                <p class="card-text">{% trans "Services Included" %}:</p>
-                                <ul class="list-of-services scrollable-services ">
-                                    {% for service in selected_package.services.all %}
-                                        <li>{{ service.name }}</li>
-                                    {% endfor %}
-                                </ul>
-                            {% else %}
-                                <p>{% trans "No package selected" %}</p>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-             </div>
         <!-- User Form -->
             <div class="p-3 align-items-end shadow auto-height  bg-opacity-50 rounded border-primary-3 blue-background no-padding-margin text-white" style="flex-grow: 0;">
                 <form method="post" id="leasing-form" class="form-inline no-padding-margin">
@@ -93,7 +70,31 @@
                     </div>
                 {% endif %}
             </div>
-        </div>
+
+            <!-- Selected Package Section -->
+             <div class="p-4 mb-4 mx-2 rounded shadow auto-height bg-white bg-opacity-50">
+                <h3 class="text-center mb-4">{% trans "Selected Package" %}</h3>
+                <div class="container">
+                    <div class="card ">
+                        <div class="card-body " id="package-details">
+                            {% if selected_package %}
+                                <h5 class="card-title">{{ selected_package.name }}</h5>
+                                <p class="card-text">{{ selected_package.description }}</p>
+                                <p class="card-text">{% trans "Price" %}: <span id="package-price">{{ selected_package.price }}</span> $</p>
+                                <p class="card-text">{% trans "Services Included" %}:</p>
+                                <ul class="list-of-services scrollable-services ">
+                                    {% for service in selected_package.services.all %}
+                                        <li>{{ service.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <p>{% trans "No package selected" %}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+             </div>
+         </div>
         <!-- Right Column with Car Details -->
        <div class="col-md-5 d-flex flex-column">
             <div class="p-4 mb-4 mx-2 rounded shadow auto-height bg-white bg-opacity-50">

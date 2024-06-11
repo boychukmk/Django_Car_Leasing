@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{% static "deps/css/my_base_css.css" %}">
 {% endblock %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,7 +31,7 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0 justify-content-between w-100">
                     <li class="nav-item position-relative">
-                        <a class="navbar-brand nav-link text-white" href="{% url 'main:index' %}">{% trans "HOME" %}</a>
+                        <a class="navbar-brand nav-link text-white" href="{% url 'catalog:index' %}">{% trans "HOME" %}</a>
                     </li>
                     <li class="nav-item dropdown position-relative">
                         <a class="nav-link text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
@@ -47,7 +47,7 @@
                         <a class="nav-link text-white" href="{% url 'catalog:index' %}">{% trans "CAR CATALOG" %}</a>
                     </li>
                     <li class="nav-item position-relative">
-                        <a class="nav-link text-white" href="{% url 'main:about' %}">{% trans "ABOUT US" %}</a>
+                        <a class="nav-link text-white" href="#">{% trans "ABOUT US" %}</a>
                     </li>
                     <li class="nav-item dropdown position-relative">
                         <a class="nav-link text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{% trans "CABINET" %}</a>
@@ -61,15 +61,43 @@
                             <li><a class="dropdown-item" href="{% url 'user:registration' %}">{% trans "Log up" %}</a></li>
                         </ul>
                     </li>
+                 <li class="nav-item dropdown position-relative">
+                        <a class="nav-link text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == 'uk' %}
+                                <img style="width: 40px; height: auto; background-color: white" src="{% static 'deps/images/Ukr_flag.png' %}" class="flag-icon" alt="Українська">
+                            {% elif LANGUAGE_CODE == 'en' %}
+                                <img style="width: 40px; height: auto; background-color: white" src="{% static 'deps/images/uk_flag.png' %}" class="flag-icon" alt="English">
+                            {% endif %}
+                        </a>
+                        <ul class="dropdown-menu ">
+                            <form action="{% url 'set_language' %}" method="post" id="language-form">
+                                {% csrf_token %}
+                                <input name="next" type="hidden" value="{{ request.path }}">
+                                <li class="dropdown-item bg-white">
+                                    <button type="submit" name="language" value="uk" class="bg-white btn btn-link dropdown-item ">
+                                        <img style="width: 20px; height: auto" src="{% static 'deps/images/Ukr_flag.png' %}" alt="Українська"> Українська
+                                    </button>
+                                </li>
+                                <li class="dropdown-item">
+                                    <button type="submit" name="language" value="en" class="bg-white btn btn-link dropdown-item">
+                                        <img style="width: 20px; height: auto" src="{% static 'deps/images/uk_flag.png' %}" alt="English"> English
+                                    </button>
+                                </li>
+                            </form>
+                        </ul>
+                    </li>
                 </ul>
-                 <img src="{% static 'deps/icons/search.svg' %}" class="search-icon" alt="Search">
+                <div class="d-flex align-items-center">
+                    <img src="{% static 'deps/icons/search.svg' %}" class="search-icon ms-2" alt="Search">
+                </div>
             </div>
         </div>
     </nav>
     <div class="search-form-wrapper">
         <form class="d-flex search-form" role="search" action="{% url 'catalog:search' %}" method="get">
             <div class="search-form-ui">
-                <input class="form-control me-2 search-input" type="search" name="q" placeholder="Enter any type of model/color/fuel/...that you want to find" aria-label="Search">
+                <input class="form-control me-2 search-input" type="search" name="q" placeholder="{% trans "Enter any type of model/color/fuel/...that you want to find" %}" aria-label="Search">
                 <button class="btn bg-primary border-warning text-white search-button" type="submit">{% trans "Search" %}</button>
             </div>
         </form>

@@ -42,13 +42,13 @@ def registration(request):
             form.save()
             user = form.instance
             auth.login(request, user)
-            messages.success(request, f"{user.username}, Вы успешно зарегистрированы и вошли в аккаунт")
+            messages.success(request, f"{user.username}, Ви успішно створили аккаунт")
             return HttpResponseRedirect(reverse('main:index'))
     else:
         form = UserRegistrationForm()
     
     context = {
-        'title': 'Home - Регистрация',
+        'title': 'Home - Регістрація',
         'form': form
     }
     return render(request, 'users/registration.html', context)
@@ -68,7 +68,7 @@ def profile(request):
         form = ProfileForm(data=request.POST, instance=request.user, files=request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, "Профайл успешно обновлен")
+            messages.success(request, "Профіль успішно оновлено")
             return HttpResponseRedirect(reverse('user:profile'))
     else:
         form = ProfileForm(instance=request.user)
@@ -110,4 +110,4 @@ def profile(request):
 def logout(request):
     messages.success(request, f"{request.user.username}, Вы вышли из аккаунта")
     auth.logout(request)
-    return redirect(reverse('main:index'))
+    return redirect(reverse('catalog:index'))

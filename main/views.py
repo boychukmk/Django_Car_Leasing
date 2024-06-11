@@ -25,9 +25,6 @@ from django.utils.translation import activate
 
 
 
-
-
-
 def search(request):
     query = request.GET.get('q', '')
     services = Service.objects.filter(name__icontains=query) if query else Service.objects.all()

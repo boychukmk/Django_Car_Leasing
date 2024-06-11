@@ -6,44 +6,6 @@
 {% endblock %}
 {% block content %}
 <div class="row">
-{#    <!-- Форма фильтров -->#}
-{#    <div class="dropdown mb-2">#}
-{#        <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false">#}
-{#            {% trans "Filters" %}#}
-{#        </button>#}
-{#      <form action="{{ cat }}" method="get" class="dropdown-menu bg-dark" data-bs-theme="dark">#}
-{##}
-{#          <input type="hidden" name="q" value="{{ request.GET.q }}">#}
-{#      {% endif %}#}
-{#    <p class="text-white mx-3 mt-3">{% trans "Sort by:" %}</p>#}
-{#    <div class="form-check text-white mx-3">#}
-{#        <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault1" value="default" {% if order_by == 'default' %}checked{% endif %}>#}
-{#        <label class="form-check-label" for="flexRadioDefault1">#}
-{#            {% trans "Default" %}#}
-{#        </label>#}
-{#    </div>#}
-{#    <div class="form-check text-white mx-3">#}
-{#        <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault2" value="price" {% if order_by == 'price' %}checked{% endif %}>#}
-{#        <label class="form-check-label" for="flexRadioDefault2">#}
-{#            {% trans "Price: Low to High" %}#}
-{#        </label>#}
-{#    </div>#}
-{#    <div class="form-check text-white mx-3">#}
-{#        <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault3" value="-price" {% if order_by == '-price' %}checked{% endif %}>#}
-{#        <label class="form-check-label" for="flexRadioDefault3">#}
-{#            {% trans "Price: High to Low" %}#}
-{#        </label>#}
-{#    </div>#}
-{#    <div class="form-check text-white mx-3">#}
-{#        <input class="form-check-input" type="checkbox" name="discount" id="discountCheckbox" value="true" {% if discount_filter %}checked{% endif %}>#}
-{#        <label class="form-check-label" for="discountCheckbox">#}
-{#            {% trans "Discounted" %}#}
-{#        </label>#}
-{#    </div>#}
-{#    <button type="submit" class="btn btn-primary mx-3 mt-3">{% trans "Sort" %}</button>#}
-{#</form>#}
-{##}
-{#    </div>#}
  <!-- Форма фильтров -->
     <div class="dropdown mb-2">
         <button class="btn btn-secondary dropdown-toggle btn-dark" type="button" data-bs-toggle="dropdown"
@@ -89,14 +51,22 @@
 
 
    {% for car in cars %}
+
+
 <div class="col-lg-4 col-md-6 p-4">
+
     <div class="card border-primary rounded custom-shadow position-relative">
+
         {% if car.discount %}
         <span class="badge bg-warning text-dark position-absolute px-3 py-3 top-0 end-0 m-2" style="background-color: red!important; font-size: 1.1rem;">{% trans "Discount" %} {{ car.difference }} $</span>
         {% endif %}
+    <a href="{% url 'cars:auto' car.code %}" onmouseover="this.classList.add('btn-light')" onmouseout="this.classList.remove('btn-light')">
         <img src="{% static '/deps/images/cars/'|add:car.slug|add:'.jpeg' %}" class="card-img-top" alt="{{ car.name }}">
+    </a>
         <div class="card-body">
-            <p class="card-title fw-bold" style="font-size: 30px;">{{ car.name }}</p>
+        <a href="{% url 'cars:auto' car.code %}" onmouseover="this.classList.add('btn-light')" onmouseout="this.classList.remove('btn-light')">
+
+            <p class="card-title fw-bold" style="font-size: 30px;">{{ car.name }}</p></a>
             <p class="card-text text-truncate">{% trans "Year" %}: {{ car.year }}. {% trans "Engine" %}: {{ car.engine_capacity }} л, {{ car.get_fuel_type_display }}.</p>
             <p class="product_id">id: {{ car.code }}</p>
             <div class="d-flex justify-content-between">
@@ -111,8 +81,10 @@
                 </a>
             </div>
         </div>
+
     </div>
 </div>
+
 {% endfor %}
 
 

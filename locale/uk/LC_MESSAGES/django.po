@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-11 20:03+0300\n"
+"POT-Creation-Date: 2024-06-11 22:22+0300\n"
 "PO-Revision-Date: 2024-06-11 20:03+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -15,7 +15,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11 ? 0 : n % 10 "
+">= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : 2);\n"
 
 #: cars/models.py:7
 msgid "Petrol"
@@ -82,19 +83,19 @@ msgid "Name"
 msgstr "Назва"
 
 #: cars/models.py:34 cars/templates/auto.html:29 leasing/models.py:19
-#: leasing/templates/create_contract.html:58
-#: leasing/templates/create_contract.html:109
+#: leasing/templates/create_contract.html:83
+#: leasing/templates/create_contract.html:110
 #: leasing/templates/leasing_services.html:48
 msgid "Price"
 msgstr "Ціна"
 
-#: cars/models.py:35 cars/templates/auto.html:41
-#: cars/templates/catalog.html:100 leasing/templates/create_contract.html:110
+#: cars/models.py:35 cars/templates/auto.html:41 cars/templates/catalog.html:70
+#: leasing/templates/create_contract.html:111
 msgid "Year"
 msgstr "Рік"
 
 #: cars/models.py:36 cars/templates/auto.html:45
-#: leasing/templates/create_contract.html:116
+#: leasing/templates/create_contract.html:117
 msgid "Engine Capacity"
 msgstr "Обʼєм двигуна"
 
@@ -103,17 +104,17 @@ msgid "Engine capacity in liters"
 msgstr "Обʼєм двигуна в літрах"
 
 #: cars/models.py:37 cars/templates/auto.html:49
-#: leasing/templates/create_contract.html:111
+#: leasing/templates/create_contract.html:112
 msgid "Fuel Type"
 msgstr "Тип палива"
 
 #: cars/models.py:38 cars/templates/auto.html:53
-#: leasing/templates/create_contract.html:112
+#: leasing/templates/create_contract.html:113
 msgid "Transmission"
 msgstr "Трансмісія"
 
 #: cars/models.py:39 cars/templates/auto.html:57
-#: leasing/templates/create_contract.html:113
+#: leasing/templates/create_contract.html:114
 msgid "Mileage"
 msgstr "Пробіг"
 
@@ -122,12 +123,12 @@ msgid "Mileage in kilometers"
 msgstr "Пробіг у кілометрах"
 
 #: cars/models.py:40 cars/templates/auto.html:61
-#: leasing/templates/create_contract.html:114
+#: leasing/templates/create_contract.html:115
 msgid "Drive Type"
 msgstr "Тип приводу"
 
 #: cars/models.py:41 cars/templates/auto.html:65
-#: leasing/templates/create_contract.html:115
+#: leasing/templates/create_contract.html:116
 msgid "Color"
 msgstr "Колір"
 
@@ -143,7 +144,7 @@ msgstr "Фото"
 msgid "Slug"
 msgstr "Слаг"
 
-#: cars/models.py:45 cars/templates/catalog.html:95
+#: cars/models.py:45 cars/templates/catalog.html:61
 msgid "Discount"
 msgstr "Знижка"
 
@@ -175,49 +176,47 @@ msgstr "Взяти в лізинг"
 msgid "BUY"
 msgstr "КУПИТИ"
 
-#: cars/templates/catalog.html:51
+#: cars/templates/catalog.html:13
 msgid "Filters"
 msgstr "Фільтри"
 
-#: cars/templates/catalog.html:61
+#: cars/templates/catalog.html:23
 msgid "Discounted"
 msgstr "Знижка"
 
-
-
-#: cars/templates/catalog.html:69
+#: cars/templates/catalog.html:31
 msgid "Default"
 msgstr "За замовчуванням"
 
-#: cars/templates/catalog.html:76
+#: cars/templates/catalog.html:38
 msgid "Price: Low to High"
 msgstr "Від дешевих до дорогих"
 
-#: cars/templates/catalog.html:83
+#: cars/templates/catalog.html:45
 msgid "Price: High to Low"
 msgstr "Від дорогих до дешевих"
 
-#: cars/templates/catalog.html:86
+#: cars/templates/catalog.html:48
 msgid "Sort"
 msgstr "Сортувати"
 
-#: cars/templates/catalog.html:100
+#: cars/templates/catalog.html:70
 msgid "Engine"
 msgstr "Двигун"
 
-#: cars/templates/catalog.html:126 cars/templates/catalog.html:130
+#: cars/templates/catalog.html:98 cars/templates/catalog.html:102
 msgid "Previous"
 msgstr "Попередня"
 
-#: cars/templates/catalog.html:142 cars/templates/catalog.html:146
+#: cars/templates/catalog.html:114 cars/templates/catalog.html:118
 msgid "Next"
 msgstr "Наступна"
 
-#: djangoProject/settings.py:142
+#: djangoProject/settings.py:74
 msgid "English"
 msgstr "Англійська"
 
-#: djangoProject/settings.py:143
+#: djangoProject/settings.py:75
 msgid "Ukrainian"
 msgstr "Українська"
 
@@ -235,7 +234,8 @@ msgstr "Дата початку не може бути порожньою."
 
 #: leasing/forms.py:43
 msgid "End date must be at least 30 days ahead of start date."
-msgstr "Дата закінчення повинна бути щонайменше на 30 днів пізніше дати початку."
+msgstr ""
+"Дата закінчення повинна бути щонайменше на 30 днів пізніше дати початку."
 
 #: leasing/forms.py:49
 msgid "Please select a service package."
@@ -321,23 +321,23 @@ msgstr "Ціна за 1 рік лізингу"
 msgid "Monthly Payment per year"
 msgstr "Щомісячний платіж на рік"
 
-#: leasing/templates/create_contract.html:51
-msgid "Selected Package"
-msgstr "Обраний пакет"
-
-#: leasing/templates/create_contract.html:59
-msgid "Services Included"
-msgstr "Включені послуги"
-
-#: leasing/templates/create_contract.html:66
-msgid "No package selected"
-msgstr "Пакет не обрано"
-
-#: leasing/templates/create_contract.html:88
+#: leasing/templates/create_contract.html:65
 msgid "Submit"
 msgstr "Відправити"
 
-#: leasing/templates/create_contract.html:100
+#: leasing/templates/create_contract.html:76
+msgid "Selected Package"
+msgstr "Обраний пакет"
+
+#: leasing/templates/create_contract.html:84
+msgid "Services Included"
+msgstr "Включені послуги"
+
+#: leasing/templates/create_contract.html:91
+msgid "No package selected"
+msgstr "Пакет не обрано"
+
+#: leasing/templates/create_contract.html:101
 msgid "Selected Car"
 msgstr "Обраний автомобіль"
 
@@ -358,7 +358,12 @@ msgid ""
 "cars with full service for large companies. Now it's time to provide access "
 "to this service for you!"
 msgstr ""
-"Мрії повинні здійснюватися на МАКСИМУМ! Живіть зараз, інвестуйте в себе, візьміть автомобіль у приватний лізинг! Це послання BoichukAuto, яке почало надавати автомобілі в оперативний лізинг приватним особам. Протягом 25 років в Україні фахівці BoichukAuto орендували парки сотень автомобілів із повним обслуговуванням для великих компаній. Тепер настав час надати доступ до цієї послуги вам!"
+"Мрії повинні здійснюватися на МАКСИМУМ! Живіть зараз, інвестуйте в себе, "
+"візьміть автомобіль у приватний лізинг! Це послання BoichukAuto, яке почало "
+"надавати автомобілі в оперативний лізинг приватним особам. Протягом 25 років "
+"в Україні фахівці BoichukAuto орендували парки сотень автомобілів із повним "
+"обслуговуванням для великих компаній. Тепер настав час надати доступ до цієї "
+"послуги вам!"
 
 #: leasing/templates/individuals.html:28
 msgid "How does BoichukAuto private leasing work?"
@@ -370,7 +375,9 @@ msgid ""
 "car and take care of it. You use it for a monthly fee, which includes a full "
 "service package."
 msgstr ""
-"Ви інвестуєте в себе, свою родину або свій бізнес, а ми купуємо для вас новий автомобіль і дбаємо про нього. Ви користуєтесь ним за місячну плату, яка включає повний пакет послуг."
+"Ви інвестуєте в себе, свою родину або свій бізнес, а ми купуємо для вас "
+"новий автомобіль і дбаємо про нього. Ви користуєтесь ним за місячну плату, "
+"яка включає повний пакет послуг."
 
 #: leasing/templates/individuals.html:32
 msgid "What is included in the service package?"
@@ -380,34 +387,37 @@ msgstr "Що входить до пакету послуг?"
 msgid ""
 "We select a new car for you that best suits your needs and buy it for you"
 msgstr ""
-"Ми обираємо для вас новий автомобіль, який найкраще відповідає вашим потребам, і купуємо його для вас."
+"Ми обираємо для вас новий автомобіль, який найкраще відповідає вашим "
+"потребам, і купуємо його для вас."
 
 #: leasing/templates/individuals.html:36
 msgid ""
 "We pay the pension fund tax, luxury tax, register the car, insure the car "
 "and hand it over to you"
 msgstr ""
-"Ми сплачуємо податок до пенсійного фонду, податок на розкіш, реєструємо автомобіль, страхуємо автомобіль і передаємо його вам."
+"Ми сплачуємо податок до пенсійного фонду, податок на розкіш, реєструємо "
+"автомобіль, страхуємо автомобіль і передаємо його вам."
 
 #: leasing/templates/individuals.html:37
 msgid ""
 "We organize car maintenance only at official service stations, our drivers "
 "take care to deliver it to the service and return it to you"
 msgstr ""
-"Ми організуємо обслуговування автомобіля тільки на офіційних сервісних станціях, наші водії доставляють його на сервіс і повертають вам."
+"Ми організуємо обслуговування автомобіля тільки на офіційних сервісних "
+"станціях, наші водії доставляють його на сервіс і повертають вам."
 
 #: leasing/templates/individuals.html:38
 msgid ""
 "Twice a year we organize tire replacement and storage of seasonal tires, "
 "deliver your car to the tire service and return it to you"
 msgstr ""
-"Двічі на рік ми організовуємо заміну шин і зберігання сезонних шин, доставляємо ваш автомобіль на шиномонтаж і повертаємо вам."
+"Двічі на рік ми організовуємо заміну шин і зберігання сезонних шин, "
+"доставляємо ваш автомобіль на шиномонтаж і повертаємо вам."
 
 #: leasing/templates/individuals.html:39
 msgid ""
 "Provide a replacement car if yours is being repaired for more than a day"
-msgstr ""
-"Надаємо підмінний автомобіль, якщо ваш ремонтується більше одного дня."
+msgstr "Надаємо підмінний автомобіль, якщо ваш ремонтується більше одного дня."
 
 #: leasing/templates/individuals.html:40
 msgid "Prepare documents for driving a car abroad"
@@ -425,7 +435,11 @@ msgid ""
 "car is fixed for the entire term of the agreement. For a monthly fee, you "
 "get a new car with a full all-inclusive service package."
 msgstr ""
-"Під час підписання контракту ви оплачуєте 4 місяці користування автомобілем одразу. За перший місяць і останні три (як гарантійний платіж). Потім ви платите щомісяця рівними частинами. Сума щомісячної плати за користування автомобілем фіксується на весь термін угоди. За місячну плату ви отримуєте новий автомобіль із повним пакетом послуг all-inclusive."
+"Під час підписання контракту ви оплачуєте 4 місяці користування автомобілем "
+"одразу. За перший місяць і останні три (як гарантійний платіж). Потім ви "
+"платите щомісяця рівними частинами. Сума щомісячної плати за користування "
+"автомобілем фіксується на весь термін угоди. За місячну плату ви отримуєте "
+"новий автомобіль із повним пакетом послуг all-inclusive."
 
 #: leasing/templates/individuals.html:47
 msgid "How to choose the car of your dreams?"
@@ -438,7 +452,10 @@ msgid ""
 "a car in the showroom, we can buy it for you in official dealer networks "
 "throughout Ukraine and deliver it to you."
 msgstr ""
-"Виберіть автомобіль своєї мрії будь-якої марки в улюбленій комплектації, і ми замовимо його для вас у офіційного дилера. Якщо ви вже вибрали автомобіль у салоні, ми можемо купити його для вас у офіційних дилерських мережах по всій Україні та доставити вам."
+"Виберіть автомобіль своєї мрії будь-якої марки в улюбленій комплектації, і "
+"ми замовимо його для вас у офіційного дилера. Якщо ви вже вибрали автомобіль "
+"у салоні, ми можемо купити його для вас у офіційних дилерських мережах по "
+"всій Україні та доставити вам."
 
 #: leasing/templates/individuals.html:51
 msgid "How to get a car today?"
@@ -452,7 +469,11 @@ msgid ""
 "Vitara, Skoda Karoq, Skoda Kodiaq, Hyundai Tucson, Toyota RAV4, Toyota "
 "Highlander."
 msgstr ""
-"Виберіть новий автомобіль зі складу та отримайте його в той же день, коли підпишете угоду. Нові автомобілі вже є в парку для приватного лізингу: Skoda Fabia, Skoda Scala, Toyota Corolla, Toyota Camry, Renault Duster, Suzuki Vitara, Skoda Karoq, Skoda Kodiaq, Hyundai Tucson, Toyota RAV4, Toyota Highlander."
+"Виберіть новий автомобіль зі складу та отримайте його в той же день, коли "
+"підпишете угоду. Нові автомобілі вже є в парку для приватного лізингу: Skoda "
+"Fabia, Skoda Scala, Toyota Corolla, Toyota Camry, Renault Duster, Suzuki "
+"Vitara, Skoda Karoq, Skoda Kodiaq, Hyundai Tucson, Toyota RAV4, Toyota "
+"Highlander."
 
 #: leasing/templates/individuals.html:55
 msgid "How to get a car on private lease?"
@@ -502,8 +523,6 @@ msgstr "Виписка з банку"
 msgid "What are your benefits?"
 msgstr "Які ваші переваги?"
 
-
-
 #: leasing/templates/individuals.html:77
 msgid "You get the car you dreamed of, and no less"
 msgstr "Ви отримуєте автомобіль своєї мрії, і нічого менше"
@@ -518,7 +537,8 @@ msgstr "Зекономте час для глобальних справ"
 
 #: leasing/templates/individuals.html:80
 msgid "Keep calm, because you are always by car under any circumstances"
-msgstr "Залишайтеся спокійними, тому що ви завжди на автомобілі за будь-яких обставин"
+msgstr ""
+"Залишайтеся спокійними, тому що ви завжди на автомобілі за будь-яких обставин"
 
 #: leasing/templates/individuals.html:81
 msgid "Live now - drive a car today"
@@ -535,7 +555,10 @@ msgid ""
 "providing turnkey services for 25 years in Ukraine, and now provides cars "
 "for lease and rental to individuals."
 msgstr ""
-"BoichukAuto - це місцевий підрозділ міжнародного постачальника мобільних послуг Avis, який протягом 25 років в Україні займається лізингом великих автопарків для великих компаній та надає послуги під ключ, а тепер надає автомобілі в лізинг і оренду для приватних осіб."
+"BoichukAuto - це місцевий підрозділ міжнародного постачальника мобільних "
+"послуг Avis, який протягом 25 років в Україні займається лізингом великих "
+"автопарків для великих компаній та надає послуги під ключ, а тепер надає "
+"автомобілі в лізинг і оренду для приватних осіб."
 
 #: leasing/templates/individuals.html:89
 msgid "77 years of the BoichukAuto brand in the world"
@@ -570,7 +593,9 @@ msgid ""
 "BoichukAuto, a car leasing service provider: 0 800 000 000 - free of charge "
 "from mobile numbers in Ukraine, +38 044 000 00 00 - for calls from abroad"
 msgstr ""
-"BoichukAuto, постачальник послуг лізингу автомобілів: 0 800 000 000 - безкоштовно з мобільних номерів в Україні, +38 044 000 00 00 - для дзвінків з-за кордону"
+"BoichukAuto, постачальник послуг лізингу автомобілів: 0 800 000 000 - "
+"безкоштовно з мобільних номерів в Україні, +38 044 000 00 00 - для дзвінків "
+"з-за кордону"
 
 #: leasing/templates/individuals.html:102
 msgid "Try it!"
@@ -615,7 +640,8 @@ msgstr "Інформація про лізинг для юридичних ос�
 msgid ""
 "Detailed information about the leasing process, conditions, and benefits for "
 "legal entities."
-msgstr "Детальна інформація про процес лізингу, умови та переваги для юридичних осіб."
+msgstr ""
+"Детальна інформація про процес лізингу, умови та переваги для юридичних осіб."
 
 #: leasing/templates/legalentities.html:22
 msgid "Further details and rules about leasing for legal entities."
@@ -629,7 +655,7 @@ msgstr "Перейти до каталогу"
 msgid "Contract has been created!"
 msgstr "Контракт створено!"
 
-#: leasing/views.py:53
+#: leasing/views.py:56
 msgid "This car is already booked during the selected dates. Available after "
 msgstr "Цей автомобіль вже заброньовано на вибрані дати. Доступний після "
 
@@ -685,7 +711,11 @@ msgstr "Увійти"
 msgid "Log up"
 msgstr "Зареєструватися"
 
-#: templates/base.html:73
+#: templates/base.html:100
+msgid "Enter any type of model/color/fuel/...that you want to find"
+msgstr ""
+
+#: templates/base.html:101
 msgid "Search"
 msgstr "Пошук"
 
@@ -694,14 +724,17 @@ msgid "Авторизація"
 msgstr "Авторизація"
 
 #: users/templates/users/login.html:17 users/templates/users/profile.html:57
+#: users/templates/users/registration.html:35
 msgid "Ім'я користувача"
 msgstr "Ім'я користувача"
 
 #: users/templates/users/login.html:21 users/templates/users/profile.html:60
+#: users/templates/users/registration.html:39
 msgid "Введіть ваше ім'я користувача"
 msgstr "Введіть ваше ім'я користувача"
 
 #: users/templates/users/login.html:25
+#: users/templates/users/registration.html:55
 msgid "Пароль"
 msgstr "Пароль"
 
@@ -746,18 +779,22 @@ msgid "Аватар користувача"
 msgstr "Аватар користувача"
 
 #: users/templates/users/profile.html:35
+#: users/templates/users/registration.html:15
 msgid "Ім'я"
 msgstr "Ім'я"
 
 #: users/templates/users/profile.html:38
+#: users/templates/users/registration.html:19
 msgid "Введіть ваше ім'я"
 msgstr "Введіть ваше ім'я"
 
 #: users/templates/users/profile.html:46
+#: users/templates/users/registration.html:25
 msgid "Прізвище"
 msgstr "Прізвище"
 
 #: users/templates/users/profile.html:49
+#: users/templates/users/registration.html:29
 msgid "Введіть ваше прізвище"
 msgstr "Введіть ваше прізвище"
 
@@ -824,3 +861,37 @@ msgstr "Загальна сума"
 #: users/templates/users/profile.html:128
 msgid "Щомісячна сума оплати"
 msgstr "Щомісячна сума оплати"
+
+#: users/templates/users/registration.html:10
+#, fuzzy
+#| msgid "Авторизація"
+msgid "Реєстрація"
+msgstr "Авторизація"
+
+#: users/templates/users/registration.html:49
+#, fuzzy
+#| msgid "Введіть ваше ім'я"
+msgid "Введіть ваш email"
+msgstr "Введіть ваше ім'я"
+
+#: users/templates/users/registration.html:59
+#, fuzzy
+#| msgid "Введіть ваш пароль"
+msgid "Введіть пароль"
+msgstr "Введіть ваш пароль"
+
+#: users/templates/users/registration.html:65
+#, fuzzy
+#| msgid "Підтверджений"
+msgid "Підтвердження паролю"
+msgstr "Підтверджений"
+
+#: users/templates/users/registration.html:69
+#, fuzzy
+#| msgid "Введіть ваш пароль"
+msgid "Підтвердіть пароль"
+msgstr "Введіть ваш пароль"
+
+#: users/templates/users/registration.html:76
+msgid "Зареєструватися"
+msgstr ""

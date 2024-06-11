@@ -59,13 +59,30 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # Add this line
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
 ]
+
+# Languages
+LANGUAGE_CODE = 'en'
+
+LANGUAGES = [
+    ('en', _('English')),
+    ('uk', _('Ukrainian')),
+]
+
+# Locale paths
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
+
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
 
 
 ROOT_URLCONF = 'djangoProject.urls'
@@ -131,22 +148,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'locale'),
-]
-
-
-LANGUAGE_CODE = 'en'
-
-LANGUAGES = [
-    ('en', _('English')),
-    ('uk', _('Ukrainian')),
-]
-
-TIME_ZONE = 'Europe/Kyiv'
-USE_I18N = True
-USE_L10N = True
-USE_TZ = True
 
 
 
@@ -170,4 +171,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 LOGIN_URL = '/user/login/'
 
+CSRF_COOKIE_SECURE = False
+CSRF_USE_SESSIONS = False
 

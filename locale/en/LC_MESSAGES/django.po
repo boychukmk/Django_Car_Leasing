@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-11 20:03+0300\n"
+"POT-Creation-Date: 2024-06-11 22:22+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -83,19 +83,19 @@ msgid "Name"
 msgstr "Name"
 
 #: cars/models.py:34 cars/templates/auto.html:29 leasing/models.py:19
-#: leasing/templates/create_contract.html:58
-#: leasing/templates/create_contract.html:109
+#: leasing/templates/create_contract.html:83
+#: leasing/templates/create_contract.html:110
 #: leasing/templates/leasing_services.html:48
 msgid "Price"
 msgstr "Price"
 
-#: cars/models.py:35 cars/templates/auto.html:41
-#: cars/templates/catalog.html:100 leasing/templates/create_contract.html:110
+#: cars/models.py:35 cars/templates/auto.html:41 cars/templates/catalog.html:70
+#: leasing/templates/create_contract.html:111
 msgid "Year"
 msgstr "Year"
 
 #: cars/models.py:36 cars/templates/auto.html:45
-#: leasing/templates/create_contract.html:116
+#: leasing/templates/create_contract.html:117
 msgid "Engine Capacity"
 msgstr "Engine Capacity"
 
@@ -104,17 +104,17 @@ msgid "Engine capacity in liters"
 msgstr "Engine capacity in liters"
 
 #: cars/models.py:37 cars/templates/auto.html:49
-#: leasing/templates/create_contract.html:111
+#: leasing/templates/create_contract.html:112
 msgid "Fuel Type"
 msgstr "Fuel Type"
 
 #: cars/models.py:38 cars/templates/auto.html:53
-#: leasing/templates/create_contract.html:112
+#: leasing/templates/create_contract.html:113
 msgid "Transmission"
 msgstr "Transmission"
 
 #: cars/models.py:39 cars/templates/auto.html:57
-#: leasing/templates/create_contract.html:113
+#: leasing/templates/create_contract.html:114
 msgid "Mileage"
 msgstr "Mileage"
 
@@ -123,12 +123,12 @@ msgid "Mileage in kilometers"
 msgstr "Mileage in kilometers"
 
 #: cars/models.py:40 cars/templates/auto.html:61
-#: leasing/templates/create_contract.html:114
+#: leasing/templates/create_contract.html:115
 msgid "Drive Type"
 msgstr "Drive Type"
 
 #: cars/models.py:41 cars/templates/auto.html:65
-#: leasing/templates/create_contract.html:115
+#: leasing/templates/create_contract.html:116
 msgid "Color"
 msgstr "Color"
 
@@ -144,7 +144,7 @@ msgstr "Photo"
 msgid "Slug"
 msgstr "Slug"
 
-#: cars/models.py:45 cars/templates/catalog.html:95
+#: cars/models.py:45 cars/templates/catalog.html:61
 msgid "Discount"
 msgstr "Discount"
 
@@ -176,47 +176,47 @@ msgstr "Lease this car"
 msgid "BUY"
 msgstr "BUY"
 
-#: cars/templates/catalog.html:51
+#: cars/templates/catalog.html:13
 msgid "Filters"
 msgstr "Filters"
 
-#: cars/templates/catalog.html:61
+#: cars/templates/catalog.html:23
 msgid "Discounted"
 msgstr "Discounted"
 
-#: cars/templates/catalog.html:69
+#: cars/templates/catalog.html:31
 msgid "Default"
 msgstr "Default"
 
-#: cars/templates/catalog.html:76
+#: cars/templates/catalog.html:38
 msgid "Price: Low to High"
 msgstr "Price: Low to High"
 
-#: cars/templates/catalog.html:83
+#: cars/templates/catalog.html:45
 msgid "Price: High to Low"
 msgstr "Price: High to Low"
 
-#: cars/templates/catalog.html:86
+#: cars/templates/catalog.html:48
 msgid "Sort"
 msgstr "Sort"
 
-#: cars/templates/catalog.html:100
+#: cars/templates/catalog.html:70
 msgid "Engine"
 msgstr "Engine"
 
-#: cars/templates/catalog.html:126 cars/templates/catalog.html:130
+#: cars/templates/catalog.html:98 cars/templates/catalog.html:102
 msgid "Previous"
 msgstr "Previous"
 
-#: cars/templates/catalog.html:142 cars/templates/catalog.html:146
+#: cars/templates/catalog.html:114 cars/templates/catalog.html:118
 msgid "Next"
 msgstr "Next"
 
-#: djangoProject/settings.py:142
+#: djangoProject/settings.py:74
 msgid "English"
 msgstr "English"
 
-#: djangoProject/settings.py:143
+#: djangoProject/settings.py:75
 msgid "Ukrainian"
 msgstr "Ukrainian"
 
@@ -320,23 +320,23 @@ msgstr "Price for 1 year leasing"
 msgid "Monthly Payment per year"
 msgstr "Monthly Payment per year"
 
-#: leasing/templates/create_contract.html:51
-msgid "Selected Package"
-msgstr "Selected Package"
-
-#: leasing/templates/create_contract.html:59
-msgid "Services Included"
-msgstr "Services Included"
-
-#: leasing/templates/create_contract.html:66
-msgid "No package selected"
-msgstr "No package selected"
-
-#: leasing/templates/create_contract.html:88
+#: leasing/templates/create_contract.html:65
 msgid "Submit"
 msgstr "Submit"
 
-#: leasing/templates/create_contract.html:100
+#: leasing/templates/create_contract.html:76
+msgid "Selected Package"
+msgstr "Selected Package"
+
+#: leasing/templates/create_contract.html:84
+msgid "Services Included"
+msgstr "Services Included"
+
+#: leasing/templates/create_contract.html:91
+msgid "No package selected"
+msgstr "No package selected"
+
+#: leasing/templates/create_contract.html:101
 msgid "Selected Car"
 msgstr "Selected Car"
 
@@ -653,7 +653,7 @@ msgstr "Go to Catalog"
 msgid "Contract has been created!"
 msgstr "Contract has been created!"
 
-#: leasing/views.py:53
+#: leasing/views.py:56
 msgid "This car is already booked during the selected dates. Available after "
 msgstr "This car is already booked during the selected dates. Available after "
 
@@ -709,7 +709,11 @@ msgstr "Log in"
 msgid "Log up"
 msgstr "Sign up"
 
-#: templates/base.html:73
+#: templates/base.html:100
+msgid "Enter any type of model/color/fuel/...that you want to find"
+msgstr "Enter any type of model/color/fuel/...that you want to find"
+
+#: templates/base.html:101
 msgid "Search"
 msgstr "Search"
 
@@ -718,14 +722,17 @@ msgid "Авторизація"
 msgstr "Authorization"
 
 #: users/templates/users/login.html:17 users/templates/users/profile.html:57
+#: users/templates/users/registration.html:35
 msgid "Ім'я користувача"
 msgstr "Username"
 
 #: users/templates/users/login.html:21 users/templates/users/profile.html:60
+#: users/templates/users/registration.html:39
 msgid "Введіть ваше ім'я користувача"
 msgstr "Enter your username"
 
 #: users/templates/users/login.html:25
+#: users/templates/users/registration.html:55
 msgid "Пароль"
 msgstr "Password"
 
@@ -770,18 +777,22 @@ msgid "Аватар користувача"
 msgstr "User Avatar"
 
 #: users/templates/users/profile.html:35
+#: users/templates/users/registration.html:15
 msgid "Ім'я"
 msgstr "First Name"
 
 #: users/templates/users/profile.html:38
+#: users/templates/users/registration.html:19
 msgid "Введіть ваше ім'я"
 msgstr "Enter your first name"
 
 #: users/templates/users/profile.html:46
+#: users/templates/users/registration.html:25
 msgid "Прізвище"
 msgstr "Last Name"
 
 #: users/templates/users/profile.html:49
+#: users/templates/users/registration.html:29
 msgid "Введіть ваше прізвище"
 msgstr "Enter your last name"
 
@@ -848,3 +859,37 @@ msgstr "Total Price"
 #: users/templates/users/profile.html:128
 msgid "Щомісячна сума оплати"
 msgstr "Monthly Payment"
+
+#: users/templates/users/registration.html:10
+#, fuzzy
+#| msgid "Авторизація"
+msgid "Реєстрація"
+msgstr "Authorization"
+
+#: users/templates/users/registration.html:49
+#, fuzzy
+#| msgid "Введіть ваше ім'я"
+msgid "Введіть ваш email"
+msgstr "Enter your first name"
+
+#: users/templates/users/registration.html:59
+#, fuzzy
+#| msgid "Введіть ваш пароль"
+msgid "Введіть пароль"
+msgstr "Enter your password"
+
+#: users/templates/users/registration.html:65
+#, fuzzy
+#| msgid "Підтверджений"
+msgid "Підтвердження паролю"
+msgstr "Confirmed"
+
+#: users/templates/users/registration.html:69
+#, fuzzy
+#| msgid "Введіть ваш пароль"
+msgid "Підтвердіть пароль"
+msgstr "Enter your password"
+
+#: users/templates/users/registration.html:76
+msgid "Зареєструватися"
+msgstr "Register"

@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import ServicePackage, LeasingContract
@@ -5,6 +6,7 @@ from .forms import LeasingContractForm
 from django.contrib.auth.decorators import login_required
 from cars.models import Car
 from django.utils.translation import gettext_lazy as _
+from django.views.decorators.csrf import csrf_protect
 from decimal import Decimal
 from datetime import datetime
 
@@ -22,6 +24,7 @@ from datetime import datetime
 from datetime import datetime
 
 @login_required
+@csrf_protect
 def create_contract(request, car_code):
     car = get_object_or_404(Car, code=car_code)
     service_packages = ServicePackage.objects.all()
@@ -57,8 +60,8 @@ def create_contract(request, car_code):
                 contract.total_price = contract.service_package.price * ((contract.end_date - contract.start_date).days // 30) + car_part
                 contract.monthly_payment = contract.total_price / ((contract.end_date - contract.start_date).days // 30)
                 contract.save()
-                return redirect('leasing:success')
-
+                messages.success(request, "Контракт успішно створено")
+                return  redirect('user:profile')
 
     else:
         form = LeasingContractForm()
