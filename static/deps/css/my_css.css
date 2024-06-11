@@ -165,35 +165,35 @@ body {
 .bg-blue{
     background-color: #0b5ed7;
 }
-     .price-calculation .card-body {
+.price-calculation .card-body {
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-        .form-inline {
+}
+.form-inline {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-        }
-        .form-inline .form-group {
+}
+.form-inline .form-group {
             flex: 1;
             display: flex;
             flex-direction: column;
             margin-right: 10px;
-        }
-        .form-inline .form-group label {
+}
+.form-inline .form-group label {
             margin-bottom: 5px;
-        }
-        .form-inline .form-group input,
-        .form-inline .form-group select {
+}
+.form-inline .form-group input,
+.form-inline .form-group select {
             padding: 5px;
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 4px;
             width: 100%;
-        }
-        .form-inline .btn {
+}
+.form-inline .btn {
             flex: 0 0 auto;
             padding: 10px 20px;
             font-size: 16px;
@@ -202,24 +202,41 @@ body {
             border: none;
             border-radius: 4px;
             cursor: pointer;
-        }
-        .form-inline .btn:hover {
+}
+.form-inline .btn:hover {
             background-color: #e6c200;
-        }
-        .auto-height {
+}
+.auto-height {
             flex-grow: 0;
-        }
-        .blue-background {
+}
+.blue-background {
             background-color: #007bff;
-        }
-         .no-padding-margin {
+}
+.no-padding-margin {
             padding: 5px !important;
-            margin: 5px !important;
-        }
+            margin: 5px !important;}
 
-        .d-flex {
+.d-flex {
             display: flex;
         }
-        .align-items-end {
+.align-items-end {
             align-items: flex-end;
         }
+
+.custom-table {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.custom-table th,
+.custom-table td {
+    border: 1px solid #0056b3;
+    background-color: #007bff;
+    color: #fff; /* Ensure text is white */
+}
+
+.custom-table th {
+    background-color: #0056b3; /* Darker blue for headers */
+    font-weight: bold; /* Make headers bold */
+    color: #ffc107
+}

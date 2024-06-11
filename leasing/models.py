@@ -37,13 +37,22 @@ class ServicePackage(models.Model):
 
 
 class LeasingContract(models.Model):
+    STATUS_CHOICES = [
+        ('Processing', _("В обробці")),
+        ('Completed', _("Виконаний")),
+        ('In progress', _("Виконується")),
+        ('Cancelled', _("Відмінений")),
+        ('Сonfirmed', _("Підтверджений")),
+    ]
+
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=_("User"))
     car = models.ForeignKey(Car, on_delete=models.CASCADE, verbose_name=_("Car"))
     start_date = models.DateField(verbose_name=_("Start Date"))
     end_date = models.DateField(verbose_name=_("End Date"))
-    service_package = models.ForeignKey(ServicePackage, on_delete=models.CASCADE, verbose_name=_("Service Package") )
+    service_package = models.ForeignKey(ServicePackage, on_delete=models.CASCADE, verbose_name=_("Service Package"))
     total_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name=_("Total Price"))
     monthly_payment = models.DecimalField(max_digits=10, decimal_places=2, verbose_name=_("Monthly Payment"))
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='processing', verbose_name=_("Status"))
 
     def __str__(self):
         return f"{self.user} - {self.car.name} ({self.car.code})"
