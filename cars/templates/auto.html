@@ -7,39 +7,35 @@
 {% endblock %}
 
 {% block content %}
-
-<div class="container bg-b">
-    <h1 style=" font-size: 50px;" class="text-xxl-center m-3  ">{{ car.name }}</h1>
+<div class="container">
+    <h1 style="font-size: 50px;" class="text-xxl-center m-3">{{ car.name }}</h1>
     <div class="row py-4 border-blue-top border-blue-bottom">
-        <div class="col-md-6 ">
+        <div class="col-md-6">
             <img src="{% static '/deps/images/cars/'|add:car.slug|add:'.jpeg' %}" class="img-fluid border-dark" alt="{{ car.name }}">
         </div>
-        <div class="col-md-6 ">
+        <div class="col-md-6">
             <table class="table table-striped p-4">
                 <tbody>
                     <tr>
-                        <th class="bg-primary" colspan="2" style="font-size: 25px;  color: white; text-align: center;">
+                        <th class="bg-primary" colspan="2" style="font-size: 25px; color: white; text-align: center;">
                             <strong>{% trans "Buy" %} {{ car.name }}</strong>
                         </th>
                     </tr>
-                  <tr>
-                    <td> {% if car.discount %}
-                            <strong>{% trans "Discounted price" %}</strong>
-                        {% else %}
-                            <strong>{% trans "Price" %}</strong>
-                        {% endif %}
-                  </td>
-                    <td>
-                        {% if car.discount %}
-                            {{ car.discounted_price }} $
-                        {% else %}
-                            {{ car.price }} $
-                        {% endif %}
-                    </td>
-                </tr>
-
-
-
+                    <tr>
+                        <td>
+                            {% if car.discount %}
+                                <strong>{% trans "Discounted price" %}</strong>
+                            {% else %}
+                                <strong>{% trans "Price" %}</strong>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if car.discount %}
+                                {{ car.discounted_price }} $
+                            {% else %}
+                                {{ car.price }} $
+                            {% endif %}
+                        </td>
                     </tr>
                     <tr>
                         <td><strong>{% trans "Year" %}</strong></td>
@@ -51,7 +47,7 @@
                     </tr>
                     <tr>
                         <td><strong>{% trans "Fuel Type" %}</strong></td>
-                        <td>{{ car.get_fuel_type_display }}</td>
+                                               <td>{{ car.get_fuel_type_display }}</td>
                     </tr>
                     <tr>
                         <td><strong>{% trans "Transmission" %}</strong></td>
@@ -69,22 +65,22 @@
                         <td><strong>{% trans "Color" %}</strong></td>
                         <td>{{ car.color }}</td>
                     </tr>
-                <tr>
+                    <tr>
                         <td><strong>{% trans "Code" %}</strong></td>
                         <td>{{ car.code }}</td>
                     </tr>
                 </tbody>
             </table>
-           <div class="text-center d-flex m-4 col-lg">
+            <div class="text-center d-flex m-4 col-lg">
                 <div class="text-center d-flex m-4 col-lg">
-                    <a href="{% url 'leasing:create_contract' car.code %}" class="btn btn-lg  btn-outline-primary bg-warning btn-opacity  m-2 w-50">{% trans "Lease this car" %}</a>
-                    <a href="#" class="btn btn-lg  btn-outline-primary bg-primary text-warning btn-opacity  m-2 w-50" >{% trans "BUY" %}</a>
+                    <a href="{% url 'leasing:create_contract' car.code %}" class="btn btn-lg btn-outline-primary bg-warning btn-opacity m-2 w-50">{% trans "Lease this car" %}</a>
+                    <a href="#" class="btn btn-lg btn-outline-primary bg-primary text-warning btn-opacity m-2 w-50">{% trans "BUY" %}</a>
                 </div>
+            </div>
         </div>
     </div>
-    </div>
-{% include "leasing_services.html" %}
-
+    {% include "leasing_services.html" %}
+</div>
 {% endblock %}
 
 

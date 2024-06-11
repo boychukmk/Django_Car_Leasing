@@ -149,3 +149,77 @@ body {
 .border-primary-doc{
     border: #0d6efd solid 5px ;
 }
+.border-primary-1{
+    border: #0d6efd solid 1px ;
+}
+.border-primary-3{
+    border: #0d6efd solid 3px ;
+}
+.border-warning-1{
+    border: #ffc107 solid 1px ;
+}
+.border-warning-3{
+    border: #ffc107 solid 3px ;
+}
+
+.bg-blue{
+    background-color: #0b5ed7;
+}
+     .price-calculation .card-body {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .form-inline {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .form-inline .form-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-right: 10px;
+        }
+        .form-inline .form-group label {
+            margin-bottom: 5px;
+        }
+        .form-inline .form-group input,
+        .form-inline .form-group select {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+        }
+        .form-inline .btn {
+            flex: 0 0 auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ffd700;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-inline .btn:hover {
+            background-color: #e6c200;
+        }
+        .auto-height {
+            flex-grow: 0;
+        }
+        .blue-background {
+            background-color: #007bff;
+        }
+         .no-padding-margin {
+            padding: 5px !important;
+            margin: 5px !important;
+        }
+
+        .d-flex {
+            display: flex;
+        }
+        .align-items-end {
+            align-items: flex-end;
+        }

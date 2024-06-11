@@ -4,6 +4,7 @@
 {% block css %}
     <link rel="stylesheet" href="{% static "deps/css/my_base_css.css" %}">
     <link rel="stylesheet" href="{% static "deps/css/my_css.css" %}">
+    <link rel="stylesheet" href="{% static "bootstrap.min.css" %}">
 {% endblock %}
 {% block content %}
     <style>
@@ -11,35 +12,52 @@
             background-image: none;
         }
     </style>
-<div class="container mt-5">
-    <div class="row">
-        <!-- Left Column with Form and Package Details -->
-        <div class="col-md-7 d-flex flex-column">
-            <!-- User Profile Section -->
-            <div class="flex-fill  p-4 mb-4 mx-2 rounded border-primary-doc">
-                <form method="post" id="leasing-form">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" class="btn btn-primary">{% trans "Submit" %}</button>
-                </form>
-                {% if error_message %}
-                    <div class="alert alert-danger mt-3">
-                        {{ error_message }}
+    <!-- Price Calculation Section spanning full width -->
+    <div class="row ">
+        <div class="col-12">
+            <div class="p-4  mx-2 rounded ">
+                <h2 class="text-center pb-3 ">{% trans "Price Calculation" %}</h2>
+                <div class="container">
+                    <div class="row border-blue-top border-blue-bottom">
+                        {% for price in calculated_prices %}
+                        <div class="col-lg-4 col-md-6 mb-4 pt-3">
+                            <div class="card h-100">
+                                <div class="card-body price-calculation border-warning-1 rounded">
+                                    <div>
+                                        <h5 class="card-title">{{ price.package.name }}</h5>
+                                        <p class="card-text">{% trans "Package Price" %}: <b>{{ price.package.price }} $</b></p>
+                                    </div>
+                                    <div>
+                                        <p class="card-text">{% trans "Price for 1 year leasing" %}: <b>{{ price.total_price }} $</b></p>
+                                    </div>
+                                    <div>
+                                        <p class="card-text">{% trans "Monthly Payment per year" %}: <b>{{ price.monthly_payment }} $</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
-                {% endif %}
+                </div>
             </div>
+        </div>
+    </div>
+<div class="container  ">
+    <div class="row mt-3">
+        <!-- Left Column with Form and Package Details -->
+        <div class="col-md-7 d-flex flex-column ">
             <!-- Selected Package Section -->
-            <div class="flex-fill  p-4 mb-4 mx-2 rounded border-warning-doc">
+             <div class="p-4 mb-4 mx-2 rounded shadow auto-height bg-white bg-opacity-50">
                 <h3 class="text-center mb-4">{% trans "Selected Package" %}</h3>
                 <div class="container">
-                    <div class="card">
-                        <div class="card-body" id="package-details">
+                    <div class="card ">
+                        <div class="card-body " id="package-details">
                             {% if selected_package %}
                                 <h5 class="card-title">{{ selected_package.name }}</h5>
                                 <p class="card-text">{{ selected_package.description }}</p>
-                                <p class="card-text">{% trans "Price" %}: {{ selected_package.price }} $</p>
+                                <p class="card-text">{% trans "Price" %}: <span id="package-price">{{ selected_package.price }}</span> $</p>
                                 <p class="card-text">{% trans "Services Included" %}:</p>
-                                <ul class="list-of-services scrollable-services">
+                                <ul class="list-of-services scrollable-services ">
                                     {% for service in selected_package.services.all %}
                                         <li>{{ service.name }}</li>
                                     {% endfor %}
@@ -50,21 +68,45 @@
                         </div>
                     </div>
                 </div>
+             </div>
+        <!-- User Form -->
+            <div class="p-3 align-items-end shadow auto-height  bg-opacity-50 rounded border-primary-3 blue-background no-padding-margin text-white" style="flex-grow: 0;">
+                <form method="post" id="leasing-form" class="form-inline no-padding-margin">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.start_date.label_tag }}
+                        {{ form.start_date }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.end_date.label_tag }}
+                        {{ form.end_date }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.service_package.label_tag }}
+                        {{ form.service_package }}
+                    </div>
+                    <button type="submit" class="btn">{% trans "Submit" %}</button>
+                </form>
+                {% if error_message %}
+                    <div class="alert alert-danger mt-3">
+                        {{ error_message }}
+                    </div>
+                {% endif %}
             </div>
         </div>
         <!-- Right Column with Car Details -->
-        <div class="col-md-5 d-flex flex-column">
-            <div class="flex-fill bg-secondary bg-opacity-75 p-4 mb-4 mx-2 rounded ">
-                <h3 class="text-center mb-4 ">{% trans "Selected Car" %}</h3>
-                <div class="container ">
-                    <div class="card ">
+       <div class="col-md-5 d-flex flex-column">
+            <div class="p-4 mb-4 mx-2 rounded shadow auto-height bg-white bg-opacity-50">
+                <h3 class="text-center mb-4">{% trans "Selected Car" %}</h3>
+                <div class="container">
+                    <div class="card">
                         <div class="card-body bg-white bg-opacity-75">
                             <img src="{% static '/deps/images/cars/'|add:car.slug|add:'.jpeg' %}" class="img-selected-car" alt="{{ car.name }}">
                             <h5 class="card-title">{{ car.name }}</h5>
                             <p class="card-text">
                                 {% if car %}
                                     <ul class="custom-list">
-                                        <li>{% trans "Price" %}: {{ car.price }} $</li>
+                                        <li>{% trans "Price" %}: <span id="car-price">{{ car.price }}</span> $</li>
                                         <li>{% trans "Year" %}: {{ car.year }}</li>
                                         <li>{% trans "Fuel Type" %}: {{ car.get_fuel_type_display }}</li>
                                         <li>{% trans "Transmission" %}: {{ car.get_transmission_display }}</li>
@@ -81,8 +123,8 @@
             </div>
         </div>
     </div>
-</div>
 
+</div>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('leasing-form');
@@ -128,5 +170,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 });
+
 </script>
 {% endblock %}

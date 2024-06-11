@@ -58,3 +58,12 @@ def catalog(request):
         'discount_filter': discount_filter,
     }
     return render(request, 'catalog.html', context)
+
+def search(request):
+    query = request.GET.get('q', '')
+    cars = Car.objects.filter(name__icontains=query) if query else Car.objects.all()
+    context = {
+        'cars': cars,
+        'query': query,
+    }
+    return render(request, 'base.html', context)

@@ -1,11 +1,9 @@
-from django.db.models import Q
 from django.contrib.postgres.search import (
     SearchVector,
     SearchQuery,
     SearchRank,
     SearchHeadline,
 )
-
 from cars.models import Car
 
 
@@ -13,7 +11,8 @@ def q_search(query):
     if query.isdigit() and len(query) <= 5:
         return Car.objects.filter(id=int(query))
 
-    vector = SearchVector("name", "description")
+    # Використовуємо всі текстові поля для пошуку
+    vector = SearchVector('name', 'fuel_type', 'transmission', 'drive_type', 'color', 'code')
     query = SearchQuery(query)
 
     result = (
@@ -24,7 +23,7 @@ def q_search(query):
 
     result = result.annotate(
         headline=SearchHeadline(
-            "name",
+            'name',
             query,
             start_sel='<span style="background-color: yellow;">',
             stop_sel="</span>",
@@ -32,13 +31,14 @@ def q_search(query):
     )
     result = result.annotate(
         bodyline=SearchHeadline(
-            "description",
+            'fuel_type',
             query,
             start_sel='<span style="background-color: yellow;">',
             stop_sel="</span>",
         )
     )
     return result
+
     # keywords = [word for word in query.split() if len(word) > 2]
 
     # q_objects = Q()

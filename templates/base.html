@@ -23,7 +23,6 @@
             padding-top:80px;
         }
     </style>
-
 </head>
 <body class="bg-secondary bg-opacity-25">
 <header>
@@ -54,38 +53,43 @@
                         <a class="nav-link text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{% trans "CABINET" %}</a>
                         <ul class="dropdown-menu custom-dropdown">
                             {% if user.is_superuser %}
-                                <li class="dropdown-item "><a href="{% url 'admin:index' %}">{% trans "Admin Panel" %}</a></li>
+                                <li class="dropdown-item"><a href="{% url 'admin:index' %}">{% trans "Admin Panel" %}</a></li>
                             {% endif %}
-                            <li><a class="dropdown-item " href="{% url 'user:profile' %}">{% trans "Profile" %}</a></li>
-                            <li><a class="dropdown-item " href="{% url 'user:logout' %}">{% trans "Log out" %}</a></li>
-                            <li><a class=" dropdown-item " href="{% url 'user:login' %}">{% trans "Log in" %}</a></li>
-                            <li><a class=" dropdown-item " href="{% url 'user:registration' %}">{% trans "Log up" %}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'user:profile' %}">{% trans "Profile" %}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'user:logout' %}">{% trans "Log out" %}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'user:login' %}">{% trans "Log in" %}</a></li>
+                            <li><a class="dropdown-item" href="{% url 'user:registration' %}">{% trans "Log up" %}</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item position-relative d-flex align-items-center">
-                        <form role="search" class="d-flex" method="get" action="{% url 'catalog:search' %}">
-                            <input class="form-control me-2" type="search" name="q" placeholder="{% trans "Search" %}" aria-label="Search">
-                            <button class="btn btn-outline-success text-white" type="submit">{% trans "Search" %}</button>
-                        </form>
-                    </li>
                 </ul>
+                 <img src="{% static 'deps/icons/search.svg' %}" class="search-icon" alt="Search">
             </div>
         </div>
     </nav>
+    <div class="search-form-wrapper">
+        <form class="d-flex search-form" role="search" action="{% url 'catalog:search' %}" method="get">
+            <div class="search-form-ui">
+                <input class="form-control me-2 search-input" type="search" name="q" placeholder="Enter any type of model/color/fuel/...that you want to find" aria-label="Search">
+                <button class="btn bg-primary border-warning text-white search-button" type="submit">{% trans "Search" %}</button>
+            </div>
+        </form>
+    </div>
 </header>
 
+<section>
+    <div class="container">
+        <!-- Content will be inserted here -->
+        {% block content %}
+        {% endblock %}
+    </div>
+</section>
 
-    <section>
-        <div class="container ">
-            <!-- Content will be inserted here -->
-            {% block content %}
-            {% endblock %}
-        </div>
-    </section>
-    <script src="{% static 'deps/js/jquery/jquery-3.7.0.min.js' %}"></script>
-    <script src="{% static 'deps/js/jquery-events.js' %}"></script>
-    <script src="{% static 'deps/js/jquery-ajax.js' %}"></script>
-    <script src="{% static 'deps/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'deps/js/search.js' %}"> </script>
+<script src="{% static 'deps/js/jquery/jquery-3.7.0.min.js' %}"></script>
+<script src="{% static 'deps/js/jquery-events.js' %}"></script>
+<script src="{% static 'deps/js/jquery-ajax.js' %}"></script>
+<script src="{% static 'deps/js/bootstrap/bootstrap.bundle.min.js' %}"></script>
 
 </body>
 </html>
