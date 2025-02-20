@@ -19,11 +19,11 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user:
                 auth.login(request, user)
-                messages.success(request, f"{username}, Вы вошли в аккаунт")
+                messages.success(request, f"{username}, Ви увійшли у акаунт")
 
                 if request.POST.get('next', None):
                     return HttpResponseRedirect(request.POST.get('next'))
-                    
+
                 return HttpResponseRedirect(reverse('main:index'))
     else:
         form = UserLoginForm()
@@ -46,21 +46,13 @@ def registration(request):
             return HttpResponseRedirect(reverse('main:index'))
     else:
         form = UserRegistrationForm()
-    
+
     context = {
         'title': 'Home - Регістрація',
         'form': form
     }
     return render(request, 'users/registration.html', context)
 
-# @login_required
-# def profile(request):
-#
-#     context = {
-#         'title': 'Home - Кабинет',
-#         'form': form
-#     }
-#     return render(request, 'users/profile.html', context)
 
 @login_required
 def profile(request):
@@ -96,18 +88,19 @@ def profile(request):
         monthly_payments.append(payment_info)
         contract.monthly_payment = round(monthly_payment, 2)  # Add this field to pass to the template
 
-
     context = {
-            'user': user,
-            'contracts': contracts,
-            'monthly_payments': monthly_payments,
-            'today_date': today_date,
-            'form': form
-        }
+        'user': user,
+        'contracts': contracts,
+        'monthly_payments': monthly_payments,
+        'today_date': today_date,
+        'form': form
+    }
 
     return render(request, 'users/profile.html', context)
+
+
 @login_required
 def logout(request):
-    messages.success(request, f"{request.user.username}, Вы вышли из аккаунта")
+    messages.success(request, f"{request.user.username}, Ви вийшли з аккаунту")
     auth.logout(request)
     return redirect(reverse('catalog:index'))

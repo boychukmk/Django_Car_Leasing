@@ -14,14 +14,10 @@ from datetime import datetime
 def legalentities(request):
     return render(request, 'legalentities.html')
 
+
 def individuals(request):
     return render(request, 'individuals.html')
 
-
-
-
-from datetime import datetime
-from datetime import datetime
 
 @login_required
 @csrf_protect
@@ -38,8 +34,8 @@ def create_contract(request, car_code):
         monthly_payment = total_price / 12
         calculated_prices.append({
             'package': package,
-            'total_price': round(total_price,2),
-            'monthly_payment': round(monthly_payment,2),
+            'total_price': round(total_price, 2),
+            'monthly_payment': round(monthly_payment, 2),
         })
     if request.method == 'POST':
         form = LeasingContractForm(request.POST)
@@ -57,11 +53,12 @@ def create_contract(request, car_code):
                                   "Available after " +
                                   str(contract.end_date))
             else:
-                contract.total_price = contract.service_package.price * ((contract.end_date - contract.start_date).days // 30) + car_part
+                contract.total_price = contract.service_package.price * (
+                            (contract.end_date - contract.start_date).days // 30) + car_part
                 contract.monthly_payment = contract.total_price / ((contract.end_date - contract.start_date).days // 30)
                 contract.save()
                 messages.success(request, "Контракт успішно створено")
-                return  redirect('user:profile')
+                return redirect('user:profile')
 
     else:
         form = LeasingContractForm()
@@ -79,13 +76,6 @@ def create_contract(request, car_code):
         'error_message': error_message,
         'calculated_prices': calculated_prices,
     })
-
-
-def success(request):
-    return render(request, 'success.html')
-
-
-
 
 
 def leasing_services(request):

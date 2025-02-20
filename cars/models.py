@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import AbstractUser
+
 
 class Car(models.Model):
     FUEL_TYPES = [
@@ -40,7 +42,7 @@ class Car(models.Model):
     drive_type = models.CharField(max_length=10, choices=DRIVE_TYPES, verbose_name=_("Drive Type"))
     color = models.CharField(max_length=50, choices=COLORS, verbose_name=_("Color"))
     code = models.CharField(max_length=50, unique=True, verbose_name=_("Code"))
-    photo = models.ImageField(upload_to='static/deps/images/cars/', blank=True, null=True, verbose_name=_("Photo"))
+    photo = models.ImageField(upload_to='users_images/', blank=True, null=True, verbose_name=_("Photo"))
     slug = models.SlugField(unique=True, blank=True, verbose_name=_("Slug"))
     discount = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True, verbose_name=_("Discount"), help_text=_("Discount in percentage"))
 
@@ -51,27 +53,18 @@ class Car(models.Model):
 
     @property
     def discounted_price(self):
-        if self.discount is not None:
-            discounted_price = self.price * (1 - self.discount / 100)
-            return f"{discounted_price:.2f}"  # Format the price with two decimal places
-        else:
-            return f"{self.price:.2f}"  # If no discount, format the original price with two decimal places
+        if self.discount:
+            return f"{(self.price * (1 - self.discount / 100)):.2f}"
+        return f"{self.price:.2f}"
 
     @property
     def difference(self):
-        return f"{self.price - (self.price * (1 - self.discount / 100)):.2f}"
+        if self.discount:
+            return f"{(self.price - self.price * (1 - self.discount / 100)):.2f}"
+        return "0.00"
 
     def __str__(self):
         return f'{self.name} ({self.year})'
-
-    def is_available(self, start_date, end_date):
-        from leasing.models import LeasingContract  # Avoid circular import
-        conflicting_contracts = LeasingContract.objects.filter(
-            car=self,
-            start_date__lt=end_date,
-            end_date__gt=start_date
-        )
-        return not conflicting_contracts.exists()
 
     class Meta:
         verbose_name = _("Car")
